@@ -1,6 +1,6 @@
-package Service;
+package service;
 
-import Model.Country;
+import model.Country;
 
 public class CountryService {
     public static void main(String[] args) {

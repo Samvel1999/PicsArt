@@ -1,6 +1,6 @@
-package Service;
+package service;
 
-import Model.Laptop;
+import model.Laptop;
 
 public class LaptopService {
     public static void main(String[] args) {

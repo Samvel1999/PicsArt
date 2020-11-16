@@ -1,6 +1,6 @@
-package Service;
+package service;
 
-import Model.Trip;
+import model.Trip;
 
 public class TripService {
     public static void main(String[] args) {
