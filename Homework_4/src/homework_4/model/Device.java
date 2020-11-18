@@ -9,6 +9,10 @@ public class Device {
     private String model;
     private String color;
 
+    protected Device() {
+
+    }
+
     public int getAnnouncementYear() {
         return announcementYear;
     }

@@ -1,6 +1,6 @@
 package homework_4.model;
 
-public class Laptop extends DeviceWithScreen {
+public class Laptop extends DeviceWithScreen implements MusicDevice, GamingDevice, CallingDevice {
 
     private boolean microphone;
     private boolean speakers;
@@ -79,6 +79,50 @@ public class Laptop extends DeviceWithScreen {
 
     public void setOs(String os) {
         this.os = os;
+    }
+
+    @Override
+    public void listenToMusic() {
+
+        System.out.println("Listen to music with Laptop");
+    }
+
+
+    @Override
+    public void audiCall() {
+
+        System.out.println("Audio call with laptop");
+    }
+
+    @Override
+    public void videoCall() {
+        System.out.println("Video call with laptop");
+    }
+
+    @Override
+    public void play() {
+        System.out.println("Playing game with laptop");
+    }
+
+    @Override
+    public void downloadGame() {
+        System.out.println("Download game into laptop");
+    }
+
+    @Override
+    public void deleteGame() {
+        System.out.println("Delete game from laptop");
+    }
+
+    @Override
+    public void connectToTheInternet() {
+
+        System.out.println("Laptop is connected to the Internet");
+    }
+
+    @Override
+    public void disconnectFromTheInternet() {
+        System.out.println("Laptop is disconnected from the Internet");
     }
 
     @Override

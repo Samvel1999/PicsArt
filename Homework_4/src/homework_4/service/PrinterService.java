@@ -5,7 +5,8 @@ import homework_4.model.Printer;
 
 import java.util.Scanner;
 
-public class PrinterService {
+public class PrinterService implements CreateService  {
+    @Override
     public Printer create() {
         Scanner scanner = new Scanner(System.in);
         Printer printer = new Printer();

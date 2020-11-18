@@ -5,7 +5,8 @@ import homework_4.model.TV;
 
 import java.util.Scanner;
 
-public class TVService {
+public class TVService implements CreateService {
+    @Override
     public TV create() {
         Scanner scanner = new Scanner(System.in);
         TV tv = new TV();

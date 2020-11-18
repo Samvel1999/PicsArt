@@ -5,7 +5,8 @@ import homework_4.model.RecordPlayer;
 
 import java.util.Scanner;
 
-public class RecordPlayerService {
+public class RecordPlayerService implements CreateService  {
+    @Override
     public RecordPlayer create() {
         Scanner scanner = new Scanner(System.in);
         RecordPlayer recordPlayer = new RecordPlayer();

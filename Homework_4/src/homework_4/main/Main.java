@@ -18,9 +18,9 @@ public class Main {
         System.out.println("------------Mobile-----------");
         System.out.println(mobile);
         System.out.println("-----------------------------");
-        mobile.call();
+        mobile.audiCall();
+        mobile.videoCall();
         mobile.takePhoto();
-        mobile.takeSelfie();
         mobile.takeVideo();
 
         TVService tvService = new TVService();
@@ -51,7 +51,7 @@ public class Main {
 
         System.out.println("------------Record Player-----------");
         System.out.println(recordPlayer);
-        System.out.println("-----------------------------");
+        System.out.println("------------------------------------");
         recordPlayer.changeMusic();
         recordPlayer.insertDisc();
         recordPlayer.removeDisc();

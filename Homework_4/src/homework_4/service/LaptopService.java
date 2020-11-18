@@ -4,7 +4,9 @@ import homework_4.model.Laptop;
 
 import java.util.Scanner;
 
-public class LaptopService {
+public class LaptopService implements CreateService {
+
+    @Override
     public Laptop create() {
         Scanner scanner = new Scanner(System.in);
         Laptop laptop = new Laptop();

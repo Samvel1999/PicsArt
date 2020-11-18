@@ -1,6 +1,6 @@
 package homework_4.model;
 
-public class RecordPlayer extends DeviceWithoutScreen {
+public class RecordPlayer extends DeviceWithoutScreen implements MusicDevice {
 
     private int volume;
     private boolean radio;
@@ -57,6 +57,11 @@ public class RecordPlayer extends DeviceWithoutScreen {
 
     public void changeMusic() {
         System.out.println("Change music");
+    }
+
+    @Override
+    public void listenToMusic() {
+        System.out.println("Listen to music with record player");
     }
 
     @Override

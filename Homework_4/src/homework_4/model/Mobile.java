@@ -1,6 +1,6 @@
 package homework_4.model;
 
-public class Mobile extends DeviceWithScreen {
+public class Mobile extends DeviceWithScreen implements MusicDevice, GamingDevice, CallingDevice, ShootingDevice {
 
     private String os;
     private int ram;
@@ -100,20 +100,57 @@ public class Mobile extends DeviceWithScreen {
         this.bluetooth = bluetooth;
     }
 
-    public void call() {
-        System.out.println("Mobile is calling.");
+    @Override
+    public void audiCall() {
+        System.out.println("Audio call with mobile");
     }
 
+    @Override
+    public void videoCall() {
+        System.out.println("Video call with mobile");
+    }
+
+    @Override
+    public void play() {
+        System.out.println("Playing game with mobile");
+    }
+
+    @Override
+    public void downloadGame() {
+        System.out.println("Download game into mobile");
+
+    }
+
+    @Override
+    public void deleteGame() {
+        System.out.println("Delete game from mobile");
+    }
+
+    @Override
+    public void connectToTheInternet() {
+        System.out.println("Mobile is connected to the Internet");
+
+    }
+
+    @Override
+    public void disconnectFromTheInternet() {
+        System.out.println("obile is disconnected from the Internet");
+
+    }
+
+    @Override
+    public void listenToMusic() {
+        System.out.println("Listen to music with mobile");
+    }
+
+    @Override
     public void takePhoto() {
-        System.out.println("Mobile takes a photo.");
+        System.out.println("Take a photo with mobile");
     }
 
-    public void takeSelfie() {
-        System.out.println("Mobile takes a selfie.");
-    }
-
+    @Override
     public void takeVideo() {
-        System.out.println("Mobile takes a video");
+        System.out.println("Take a video with mobile");
     }
 
     @Override

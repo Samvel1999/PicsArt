@@ -5,7 +5,8 @@ import homework_4.model.Mobile;
 
 import java.util.Scanner;
 
-public class MobileService {
+public class MobileService implements CreateService {
+    @Override
     public Mobile create() {
         Scanner scanner = new Scanner(System.in);
         Mobile mobile = new Mobile();
