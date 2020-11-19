@@ -1,5 +1,7 @@
 package homework_4.model;
 
+import homework_4.model.interfaces.ShootingDevice;
+
 public class Camera extends DeviceWithoutScreen implements ShootingDevice {
     private int pixel;
     private int memory;

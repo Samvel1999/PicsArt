@@ -1,5 +1,7 @@
 package homework_4.model;
 
+import homework_4.model.interfaces.CleaningDevice;
+
 public class DishWasher extends DeviceWithoutScreen implements CleaningDevice {
     private int capacity;
     private int numberOfPrograms;

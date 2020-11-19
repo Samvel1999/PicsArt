@@ -1,5 +1,9 @@
 package homework_4.model;
 
+import homework_4.model.interfaces.CallingDevice;
+import homework_4.model.interfaces.GamingDevice;
+import homework_4.model.interfaces.MusicDevice;
+
 public class Laptop extends DeviceWithScreen implements MusicDevice, GamingDevice, CallingDevice {
 
     private boolean microphone;

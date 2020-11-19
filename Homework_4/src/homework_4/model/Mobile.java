@@ -1,5 +1,10 @@
 package homework_4.model;
 
+import homework_4.model.interfaces.CallingDevice;
+import homework_4.model.interfaces.GamingDevice;
+import homework_4.model.interfaces.MusicDevice;
+import homework_4.model.interfaces.ShootingDevice;
+
 public class Mobile extends DeviceWithScreen implements MusicDevice, GamingDevice, CallingDevice, ShootingDevice {
 
     private String os;

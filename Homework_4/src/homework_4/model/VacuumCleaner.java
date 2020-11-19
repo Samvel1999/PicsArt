@@ -1,5 +1,7 @@
 package homework_4.model;
 
+import homework_4.model.interfaces.CleaningDevice;
+
 public class VacuumCleaner extends DeviceWithoutScreen implements CleaningDevice {
     private int weight;
     private String filter;

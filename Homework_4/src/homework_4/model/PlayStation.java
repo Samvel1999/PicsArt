@@ -1,5 +1,7 @@
 package homework_4.model;
 
+import homework_4.model.interfaces.GamingDevice;
+
 public class PlayStation extends DeviceWithoutScreen implements GamingDevice {
     private int memory;
     private int ram;

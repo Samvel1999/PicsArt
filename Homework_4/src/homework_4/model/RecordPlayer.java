@@ -1,5 +1,7 @@
 package homework_4.model;
 
+import homework_4.model.interfaces.MusicDevice;
+
 public class RecordPlayer extends DeviceWithoutScreen implements MusicDevice {
 
     private int volume;

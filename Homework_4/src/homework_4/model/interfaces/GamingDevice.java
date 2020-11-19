@@ -1,4 +1,4 @@
-package homework_4.model;
+package homework_4.model.interfaces;
 
 public interface GamingDevice {
     void play();
