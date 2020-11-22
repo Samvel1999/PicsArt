@@ -1,5 +1,7 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Student {
     private String firstName;
     private String lastName;
@@ -28,7 +30,12 @@ public class Student {
     }
 
     public void setYear(int year) {
-        this.year = year;
+        if(year >= 1980 && year <= LocalDate.now().getYear()) {
+            this.year = year;
+        }
+        else {
+            System.out.println("Wrong data");
+        }
     }
 
     public char getGender() {
@@ -36,7 +43,12 @@ public class Student {
     }
 
     public void setGender(char gender) {
-        this.gender = gender;
+        if(gender == 'm' || gender == 'f'){
+            this.gender = gender;
+        }
+        else {
+            System.out.println("Wrong data");
+        }
     }
 
     public double getMark() {
@@ -44,7 +56,12 @@ public class Student {
     }
 
     public void setMark(double mark) {
-        this.mark = mark;
+        if(mark >= 0 && mark <= 100) {
+            this.mark = mark;
+        }
+        else {
+            System.out.println("Wrong data");
+        }
     }
 
     @Override

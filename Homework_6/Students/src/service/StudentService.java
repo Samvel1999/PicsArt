@@ -71,6 +71,7 @@ public class StudentService {
     //Task 6: Print students sorted by mark.
     public void printStudentsSortedByMark(Student[] students) {
         int n = students.length;
+
         MergeSortByMark.sort(students, 0, n - 1);
         System.out.println("----Students sorted by mark-----");
         for(Student student : students) {
