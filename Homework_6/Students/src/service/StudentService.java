@@ -1,7 +1,7 @@
 package service;
 
-import MergeSort.MergeSortByMark;
-import MergeSort.MergeSortByYear;
+import mergeSort.MergeSortByMark;
+import mergeSort.MergeSortByYear;
 import model.Student;
 
 public class StudentService {

@@ -1,0 +1,6 @@
+1,HP,White,50,colored,2018,150000
+2,Canon,Black,40,non-colored,2017,120000
+3,HP,White,50,colored,2018,150000
+4,Sony,Black,60,non-colored,2016,200000
+5,HP,White,50,colored,2018,150000
+6,Canon,Black,40,non-colored,2017,120000

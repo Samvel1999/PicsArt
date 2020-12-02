@@ -63,8 +63,6 @@ public class TV extends DeviceWithScreen {
 
     @Override
     public String toString() {
-        return super.toString() + "smart=" + smart + "\n" +
-                "currentChannel=" + currentChannel + "\n" +
-                "volume=" + volume + "\n";
+        return super.toString() + "smart=" + smart + "\n";
     }
 }

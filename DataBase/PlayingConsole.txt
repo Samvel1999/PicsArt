@@ -1,0 +1,6 @@
+1,Xbox,Black,16,1024,2018,250000
+2,Playstation,White,16,512,2019,180000
+3,Xbox,Black,16,1024,2018,250000
+4,Playstation,Black,8,256,2019,120000
+5,Playstation,Blue,4,1024,2018,200000
+6,Playstation,White,16,512,2020,180000

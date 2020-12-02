@@ -1,13 +1,9 @@
 package homework_4.model;
 
-import homework_4.model.interfaces.CleaningDevice;
-
-public class WashingMachine extends DeviceWithoutScreen implements CleaningDevice {
+public class WashingMachine extends DeviceWithoutScreen {
     private int washingCapacity;
     private int spinSpeed;
     private int numberOfPrograms;
-    private char washClass;
-    private int noise;
     private String energyClass;
     private String manufacturerCountry;
 
@@ -41,24 +37,6 @@ public class WashingMachine extends DeviceWithoutScreen implements CleaningDevic
         }
     }
 
-    public char getWashClass() {
-        return washClass;
-    }
-
-    public void setWashClass(char washClass) {
-        this.washClass = washClass;
-    }
-
-    public int getNoise() {
-        return noise;
-    }
-
-    public void setNoise(int noise) {
-        if(noise > 0) {
-            this.noise = noise;
-        }
-    }
-
     public String getEnergyClass() {
         return energyClass;
     }
@@ -76,7 +54,11 @@ public class WashingMachine extends DeviceWithoutScreen implements CleaningDevic
     }
 
     @Override
-    public void clean() {
-        System.out.println("Wash clothes");
+    public String toString() {
+        return super.toString() + "washing capacity = " + washingCapacity + "\n"
+                + "spin speed = " + spinSpeed + "\n"
+                + "number of programs = " + numberOfPrograms + "\n"
+                + "energy class = " + energyClass + "\n"
+                + "manufacturer country = " + manufacturerCountry + "\n";
     }
 }

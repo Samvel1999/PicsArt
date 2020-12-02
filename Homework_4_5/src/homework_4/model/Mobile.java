@@ -5,7 +5,7 @@ import homework_4.model.interfaces.GamingDevice;
 import homework_4.model.interfaces.MusicDevice;
 import homework_4.model.interfaces.ShootingDevice;
 
-public class Mobile extends DeviceWithScreen implements MusicDevice, GamingDevice, CallingDevice, ShootingDevice {
+public class Mobile extends DeviceWithScreen {
 
     private String os;
     private int ram;
@@ -13,8 +13,6 @@ public class Mobile extends DeviceWithScreen implements MusicDevice, GamingDevic
     private int frontCamera;
     private int mainCamera;
     private int batteryCapacity;
-    private boolean gps;
-    private boolean bluetooth;
 
     public String getOs() {
         return os;
@@ -89,75 +87,6 @@ public class Mobile extends DeviceWithScreen implements MusicDevice, GamingDevic
         }
     }
 
-    public boolean hasGps() {
-        return gps;
-    }
-
-    public void setGps(boolean gps) {
-        this.gps = gps;
-    }
-
-    public boolean hasBluetooth() {
-        return bluetooth;
-    }
-
-    public void setBluetooth(boolean bluetooth) {
-        this.bluetooth = bluetooth;
-    }
-
-    @Override
-    public void audiCall() {
-        System.out.println("Audio call with mobile");
-    }
-
-    @Override
-    public void videoCall() {
-        System.out.println("Video call with mobile");
-    }
-
-    @Override
-    public void play() {
-        System.out.println("Playing game with mobile");
-    }
-
-    @Override
-    public void downloadGame() {
-        System.out.println("Download game into mobile");
-
-    }
-
-    @Override
-    public void deleteGame() {
-        System.out.println("Delete game from mobile");
-    }
-
-    @Override
-    public void connectToTheInternet() {
-        System.out.println("Mobile is connected to the Internet");
-
-    }
-
-    @Override
-    public void disconnectFromTheInternet() {
-        System.out.println("obile is disconnected from the Internet");
-
-    }
-
-    @Override
-    public void listenToMusic() {
-        System.out.println("Listen to music with mobile");
-    }
-
-    @Override
-    public void takePhoto() {
-        System.out.println("Take a photo with mobile");
-    }
-
-    @Override
-    public void takeVideo() {
-        System.out.println("Take a video with mobile");
-    }
-
     @Override
     public String toString() {
         return super.toString() + "os=" + os +  "\n" +
@@ -165,9 +94,7 @@ public class Mobile extends DeviceWithScreen implements MusicDevice, GamingDevic
                 "memory=" + memory + "\n" +
                 "frontCamera=" + frontCamera + "\n" +
                 "mainCamera=" + mainCamera + "\n" +
-                "batteryCapacity=" + batteryCapacity + "\n" +
-                "gps=" + gps + "\n" +
-                "bluetooth=" + bluetooth;
+                "batteryCapacity=" + batteryCapacity + "\n";
     }
 }
 

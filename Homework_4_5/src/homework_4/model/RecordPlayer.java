@@ -1,12 +1,11 @@
 package homework_4.model;
 
-import homework_4.model.interfaces.MusicDevice;
-
-public class RecordPlayer extends DeviceWithoutScreen implements MusicDevice {
+public class RecordPlayer extends DeviceWithoutScreen {
 
     private int volume;
     private boolean radio;
     private boolean disc;
+    private int weight;
 
     public int getVolume() {
         return volume;
@@ -49,27 +48,17 @@ public class RecordPlayer extends DeviceWithoutScreen implements MusicDevice {
         radio = false;
     }
 
-    public void insertDisc() {
-        System.out.println("Disc is inserted");
+    public int getWeight() {
+        return weight;
     }
 
-    public void removeDisc() {
-        System.out.println("Disc is removed");
+    public void setWeight(int weight) {
+        this.weight = weight;
     }
 
-    public void changeMusic() {
-        System.out.println("Change music");
-    }
-
-    @Override
-    public void listenToMusic() {
-        System.out.println("Listen to music with record player");
-    }
 
     @Override
     public String toString() {
-        return super.toString() + "volume=" + volume + "\n" +
-                "radio=" + radio + "\n" +
-                "disc=" + disc + "\n";
+        return super.toString() + "weight = " + weight + "\n";
     }
 }

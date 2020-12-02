@@ -1,0 +1,8 @@
+1,Canon,Black,16,256,5,bluetooth,2020,205000
+2,Nikon,Red,12,128,3,bluetooth,2012,125000
+3,Canon,Black,16,256,5,bluetooth,2020,205000
+4,Sony,Black,8,128,3,bluetooth,2016,150000
+5,Canon,Black,16,256,5,bluetooth,2020,205000
+6,Nikon,Red,12,128,3,bluetooth,2012,125000
+7,Sony,Blue,6,128,2,no bluetooth,2005,50000
+8,Samsung,Red,4,128,2,no bluetooth,2004,25000

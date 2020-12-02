@@ -1,6 +1,6 @@
 package homework_4.model;
 
-public class DeviceWithScreen extends Device {
+public abstract class DeviceWithScreen extends Device {
     private Screen screen = new Screen();
 
     public Screen getScreen() {

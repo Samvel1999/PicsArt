@@ -2,7 +2,7 @@ package homework_4.model;
 
 import homework_4.model.interfaces.ShootingDevice;
 
-public class Camera extends DeviceWithoutScreen implements ShootingDevice {
+public class Camera extends DeviceWithoutScreen {
     private int pixel;
     private int memory;
     private int weight;
@@ -38,21 +38,19 @@ public class Camera extends DeviceWithoutScreen implements ShootingDevice {
         }
     }
 
-    public boolean isHasBluetooth() {
+    public boolean hasBluetooth() {
         return hasBluetooth;
     }
 
-    public void setHasBluetooth(boolean hasBluetooth) {
+    public void setBluetooth(boolean hasBluetooth) {
         this.hasBluetooth = hasBluetooth;
     }
 
     @Override
-    public void takePhoto() {
-        System.out.println("Take a photo with camera");
-    }
-
-    @Override
-    public void takeVideo() {
-        System.out.println("Take a video with camera");
+    public String toString() {
+        return super.toString() + "pixel = " + pixel + "\n"
+                + "memory = " + memory + "\n"
+                + "weight = " + weight + "\n"
+                + "hasBluetooth = " + hasBluetooth + "\n";
     }
 }

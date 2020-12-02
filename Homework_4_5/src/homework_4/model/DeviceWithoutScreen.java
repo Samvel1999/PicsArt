@@ -1,4 +1,4 @@
 package homework_4.model;
 
-public class DeviceWithoutScreen extends Device {
+public abstract class DeviceWithoutScreen extends Device {
 }

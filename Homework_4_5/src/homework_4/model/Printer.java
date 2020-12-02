@@ -1,38 +1,28 @@
 package homework_4.model;
 
 public class Printer extends DeviceWithoutScreen {
-    private int numberOfLists;
-    private int numberOfColors = 1;
+    private int maxNumberOfLists;
+    private boolean isColored;
 
-    public int getNumberOfLists() {
-        return numberOfLists;
+    public int getMaxNumberOfLists() {
+        return maxNumberOfLists;
     }
 
-    public void setNumberOfLists(int numberOfLists) {
-        this.numberOfLists = numberOfLists;
+    public void setMaxNumberOfLists(int maxNumberOfLists) {
+        this.maxNumberOfLists = maxNumberOfLists;
     }
 
-    public int getNumberOfColors() {
-        return numberOfColors;
+    public boolean isColored() {
+        return isColored;
     }
 
-    public void setNumberOfColors(int numberOfColors) {
-        if(numberOfColors > 0) {
-            this.numberOfColors = numberOfColors;
-        }
-    }
-
-    public void print(int numberOfSamples) {
-        System.out.println("Print " + numberOfSamples + " sample");
-    }
-
-    public void xerox(int numberOfSamples) {
-        System.out.println("Xerox " + numberOfSamples + " sample");
+    public void setColored(boolean isColored) {
+        this.isColored = isColored;
     }
 
     @Override
     public String toString() {
-        return super.toString() + "numberOfLists=" + numberOfLists +  "\n" +
-                "numberOfColors=" + numberOfColors + "\n";
+        return super.toString() + "max number of lists=" + maxNumberOfLists +  "\n" +
+                "is colored=" + isColored + "\n";
     }
 }

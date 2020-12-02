@@ -1,4 +1,4 @@
-package MergeSort;
+package mergeSort;
 
 import model.Student;
 

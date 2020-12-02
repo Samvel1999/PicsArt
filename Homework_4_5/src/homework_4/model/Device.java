@@ -1,16 +1,28 @@
 package homework_4.model;
 
-public class Device {
+public abstract class Device {
 
-    private int announcementYear;
-    private double price;
-    private boolean power = false;
-    private boolean powerButton = false;
     private String model;
     private String color;
+    private int announcementYear;
+    private int price;
+    private boolean power = false;
+    private boolean powerButton = false;
 
-    protected Device() {
+    public String getModel() {
+        return model;
+    }
 
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 
     public int getAnnouncementYear() {
@@ -21,11 +33,11 @@ public class Device {
         this.announcementYear = announcementYear;
     }
 
-    public double getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(int price) {
         if(price > 0) {
             this.price = price;
         }
@@ -78,29 +90,12 @@ public class Device {
         }
     }
 
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
     @Override
     public String toString() {
-        return  "announcementYear=" + announcementYear + "\n" +
-                "price=" + price + "\n" +
-                "power=" + power + "\n" +
-                "powerButton=" + powerButton + "\n" +
-                "model=" + model + "\n" +
-                "color=" + color + "\n";
+        return  "model=" + model + "\n" +
+                "color=" + color + "\n" +
+                "announcementYear=" + announcementYear + "\n" +
+                "price=" + price + "\n";
+
     }
 }
