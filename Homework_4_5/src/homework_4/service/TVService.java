@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class TVService {
-    private static final String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\DataBase\\TV.txt";
+    private static final String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\TV.txt";
     private static int id = 0;
 
     private TV create() {

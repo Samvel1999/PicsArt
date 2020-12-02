@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 public class MobileService implements MusicDevice, GamingDevice, CallingDevice, ShootingDevice {
 
-    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\DataBase\\Mobile.txt";
+    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\Mobile.txt";
     private static int id = 0;
 
     public Mobile create() {

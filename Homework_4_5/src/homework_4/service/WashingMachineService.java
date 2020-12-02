@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class WashingMachineService implements CleaningDevice {
-    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\DataBase\\WashingMachine.txt";
+    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\WashingMachine.txt";
     private static int id = 0;
 
     public WashingMachine create() {

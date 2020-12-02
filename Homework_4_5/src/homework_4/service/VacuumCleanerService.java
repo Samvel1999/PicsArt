@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class VacuumCleanerService implements CleaningDevice {
-    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\DataBase\\VacuumCleaner.txt";
+    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\VacuumCleaner.txt";
     private static int id = 0;
 
     public VacuumCleaner create() {

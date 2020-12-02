@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class PlayingConsoleService implements GamingDevice {
-    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\DataBase\\PlayingConsole.txt";
+    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\PlayingConsole.txt";
     private static int id = 0;
 
     public PlayingConsole create() {

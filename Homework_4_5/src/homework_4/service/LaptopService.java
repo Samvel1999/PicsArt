@@ -10,7 +10,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class LaptopService implements MusicDevice, GamingDevice, CallingDevice {
-    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\DataBase\\Laptop.txt";
+    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\Laptop.txt";
     private static int id = 0;
 
     public Laptop create() {

@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class RecordPlayerService implements MusicDevice {
-    private static final String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\DataBase\\RecordPlayer.txt";
+    private static final String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\RecordPlayer.txt";
     private static int id = 0;
 
     public RecordPlayer create() {

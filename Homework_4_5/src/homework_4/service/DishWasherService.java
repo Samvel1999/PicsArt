@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.Scanner;
 
 public class DishWasherService implements CleaningDevice {
-    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\DataBase\\DishWasher.txt";
+    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\DishWasher.txt";
     private static int id = 0;
 
     private DishWasher create() {

@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class PrinterService {
 
-    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\DataBase\\Printer.txt";
+    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\Printer.txt";
     private static int id = 0;
 
     private Printer create() {

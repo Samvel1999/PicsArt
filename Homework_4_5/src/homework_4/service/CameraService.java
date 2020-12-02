@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class CameraService implements ShootingDevice {
 
-    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\DataBase\\Camera.txt";
+    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\Camera.txt";
     private static int id = 0;
 
     public Camera create() {
