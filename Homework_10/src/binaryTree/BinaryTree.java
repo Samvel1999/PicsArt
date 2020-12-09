@@ -170,7 +170,6 @@ public class BinaryTree {
                 queue.add(curr.getRight());
             }
         }
-        System.out.println();
     }
 
     public void deleteByData(Integer data) {
@@ -238,6 +237,5 @@ public class BinaryTree {
                 queue.add(curr.getRight());
             }
         }
-        System.out.println();
     }
 }
