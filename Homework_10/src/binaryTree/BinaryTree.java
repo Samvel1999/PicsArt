@@ -4,78 +4,231 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class BinaryTree {
-    private Node head;
+    public Node head;
+    private static int size = 0;
 
-    public Node getHead() {
-        return head;
-    }
+    private Node findByData(int data) {
+        Queue<Node> queue = new LinkedList<>();
 
-    public void setHead(Node head) {
-        this.head = head;
-    }
+        Node curr = head;
+        queue.add(curr);
 
-    private void DFS(Node curr) {
-        if(curr == null) {
-            return;
+        while(!queue.isEmpty()) {
+            curr = queue.poll();
+            if(curr.data.equals(data)) {
+                return curr;
+            }
+
+            if(curr.left != null) {
+                queue.add(curr.left);
+            }
+
+            if(curr.right != null) {
+                queue.add(curr.right);
+            }
         }
-
-        DFS(curr.getLeft());
-        System.out.print(curr.getData() + " ");
-        DFS(curr.getRight());
+        return null;
     }
-
     private Node findByIndex(int i) {
         Queue<Node> queue = new LinkedList<>();
 
         Node curr = head;
         queue.add(curr);
-        if(i < 0) {
+        if(i < 0 || i >= size) {
             return null;
         }
 
         while(!queue.isEmpty()) {
             curr = queue.poll();
             if(i == 0) {
-                return curr;
+                break;
+            }
+            i--;
+
+            if(curr.left != null) {
+                queue.add(curr.left);
+            }
+
+            if(curr.right != null) {
+                queue.add(curr.right);
+            }
+        }
+        if(i != 0) {
+
+            return null;
+        }
+        return curr;
+    }
+    private Node addRecursive(int data, Node curr) {
+        if(curr == null) {
+            return new Node(data);
+        }
+        if(data < curr.data) {
+            curr.left = addRecursive(data, curr.left);
+        }
+        else {
+            curr.right = addRecursive(data, curr.right);
+        }
+
+        return curr;
+    }
+    private void DFS(Node curr) {
+        if(curr == null) {
+            return;
+        }
+
+        DFS(curr.left);
+        System.out.print(curr.data + " ");
+        DFS(curr.right);
+    }
+
+    public void deleteByIndex(int index) {
+        Node del = findByIndex(index);
+
+        if(del == null) {
+            System.out.println("There is no such a element");
+            return;
+        }
+        Node parent = head;
+
+        //find parent of del
+        if(del != head) {
+            while(parent.left != del && parent.right != del) {
+                if(del.data < parent.data) {
+                    parent = parent.left;
+                }
+                else {
+                    parent = parent.right;
+                }
+            }
+        }
+
+        //case 1: del is leaf node
+        if(del.left == null && del.right == null) {
+            if(del != head) {
+                if(parent.right == del) {
+                    parent.right = null;
+                }
+                else {
+                    parent.left = null;
+                }
             }
             else {
-                i--;
-            }
-
-            if(curr.getLeft() != null) {
-                queue.add(curr.getLeft());
-            }
-
-            if(curr.getRight() != null) {
-                queue.add(curr.getRight());
+                head = null;
             }
         }
-        return null;
-    }
 
-    private Node findByData(Integer data) {
-        Queue<Node> queue = new LinkedList<>();
+        //case 2: del has two children
+        else if(del.left != null && del.right != null) {
+            Node swapElem = del.right;
+            Node parentSwapElem = del;
 
-        Node curr = head;
-        queue.add(curr);
-
-        while(!queue.isEmpty()) {
-            curr = queue.poll();
-            if(curr.getData().equals(data)) {
-                return curr;
+            if(swapElem.left == null) {
+                del.data = swapElem.data;
+                del.right = swapElem.right;
+                return;
+            }
+            while(swapElem.left != null) {
+                parentSwapElem = swapElem;
+                swapElem = swapElem.left;
             }
 
-            if(curr.getLeft() != null) {
-                queue.add(curr.getLeft());
-            }
+            del.data = swapElem.data;
+            parentSwapElem.left = null;
+        }
 
-            if(curr.getRight() != null) {
-                queue.add(curr.getRight());
+        else {
+            Node child = (del.left != null) ? del.left : del.right;
+            if(del != head) {
+                if(del == parent.left) {
+                    parent.left = child;
+                }
+                else {
+                    parent.right = child;
+                }
+            }
+            else {
+                head = child;
             }
         }
-        return null;
     }
+    public void deleteByData(int data) {
+        Node del = findByData(data);
 
+        if(del == null) {
+            System.out.println("There is no such a element");
+            return;
+        }
+        Node parent = head;
+
+        //find parent of del
+        if(del != head) {
+            while(parent.left != del && parent.right != del) {
+                if(data < parent.data) {
+                    parent = parent.left;
+                }
+                else {
+                    parent = parent.right;
+                }
+            }
+        }
+
+
+        //case 1: del is leaf node
+        if(del.left == null && del.right == null) {
+            if(del != head) {
+                if(parent.right == del) {
+                    parent.right = null;
+                }
+                else {
+                    parent.left = null;
+                }
+            }
+            else {
+                head = null;
+            }
+        }
+
+        //case 2: del has two children
+        //swapElem is minimum element of del.right subtree
+        else if(del.left != null && del.right != null) {
+            Node swapElem = del.right;
+            Node parentSwapElem = del;
+
+            if(swapElem.left == null) {
+                del.data = swapElem.data;
+                del.right = swapElem.right;
+                return;
+            }
+            while(swapElem.left != null) {
+                parentSwapElem = swapElem;
+                swapElem = swapElem.left;
+            }
+
+            del.data = swapElem.data;
+            parentSwapElem.left = null;
+        }
+
+        //case 3: del has one child
+        else {
+            Node child = (del.left != null) ? del.left : del.right;
+            if(del != head) {
+                if(del == parent.left) {
+                    parent.left = child;
+                }
+                else {
+                    parent.right = child;
+                }
+            }
+            else {
+                head = child;
+            }
+        }
+    }
+    public void add(int data) {
+        head = addRecursive(data, head);
+        size++;
+    }
     public void BFS() {
         Queue<Node> queue = new LinkedList<>();
 
@@ -87,155 +240,24 @@ public class BinaryTree {
         while(!queue.isEmpty()) {
             curr = queue.poll();
 
-            System.out.print(curr.getData() + " ");
+            System.out.print(curr.data + " ");
 
-            if(curr.getLeft() != null) {
-                queue.add(curr.getLeft());
+            if(curr.left != null) {
+                queue.add(curr.left);
             }
 
-            if(curr.getRight() != null) {
-                queue.add(curr.getRight());
+            if(curr.right != null) {
+                queue.add(curr.right);
             }
         }
         System.out.println();
     }
-
     public void DFS() {
         System.out.print("DFS: ");
         DFS(head);
         System.out.println();
     }
 
-    public void deleteByIndex(int i) {
-        Node del = findByIndex(i);
-        if(del == null) {
-            System.out.println("There is no such a element.");
-            return;
-        }
 
-        Queue<Node> queue = new LinkedList<>();
 
-        Node curr = head;
-        queue.add(curr);
-
-        while(!queue.isEmpty()) {
-            curr = queue.poll();
-
-            if(curr.getLeft().equals(del)) {
-                //Case 1: del has two child.
-                if(del.getLeft() != null && del.getRight() != null) {
-                    curr.setLeft(del.getLeft());
-                    del.getLeft().setRight(del.getRight());
-                }
-                //Case 2: del has left child only.
-                else if(del.getLeft() != null) {
-                    curr.setLeft(del.getLeft());
-                }
-                //Case 3: del has right child only.
-                else if(del.getRight() != null) {
-                    curr.setLeft(del.getRight());
-                }
-                //Case 4: del has no child.
-                else {
-                    curr.setLeft(null);
-                }
-                return;
-            }
-            else if(curr.getRight().equals(del)) {
-                //Case 1: del has two child.
-                if(del.getLeft() != null && del.getRight() != null) {
-                    curr.setRight(del.getLeft());
-                    del.getLeft().setRight(del.getRight());
-                }
-                //Case 2: del has left child only.
-                else if(del.getLeft() != null) {
-                    curr.setRight(del.getLeft());
-                }
-                //Case 3: del has right child only.
-                else if(del.getRight() != null) {
-                    curr.setRight(del.getRight());
-                }
-                //Case 4: del has no child.
-                else {
-                    curr.setRight(null);
-                }
-                return;
-            }
-
-            if(curr.getLeft() != null) {
-                queue.add(curr.getLeft());
-            }
-
-            if(curr.getRight() != null) {
-                queue.add(curr.getRight());
-            }
-        }
-    }
-
-    public void deleteByData(Integer data) {
-        Node del = findByData(data);
-
-        if(del == null) {
-            System.out.println("There is no such a element.");
-            return;
-        }
-
-        Queue<Node> queue = new LinkedList<>();
-
-        Node curr = head;
-        queue.add(curr);
-
-        while(!queue.isEmpty()) {
-            curr = queue.poll();
-
-            if(curr.getLeft().equals(del)) {
-                //Case 1: del has two child.
-                if(del.getLeft() != null && del.getRight() != null) {
-                    curr.setLeft(del.getLeft());
-                    del.getLeft().setRight(del.getRight());
-                }
-                //Case 2: del has left child only.
-                else if(del.getLeft() != null) {
-                    curr.setLeft(del.getLeft());
-                }
-                //Case 3: del has right child only.
-                else if(del.getRight() != null) {
-                    curr.setLeft(del.getRight());
-                }
-                //Case 4: del has no child.
-                else {
-                    curr.setLeft(null);
-                }
-                return;
-            }
-            else if(curr.getRight().equals(del)) {
-                //Case 1: del has two child.
-                if(del.getLeft() != null && del.getRight() != null) {
-                    curr.setRight(del.getLeft());
-                    del.getLeft().setRight(del.getRight());
-                }
-                //Case 2: del has left child only.
-                else if(del.getLeft() != null) {
-                    curr.setRight(del.getLeft());
-                }
-                //Case 3: del has right child only.
-                else if(del.getRight() != null) {
-                    curr.setRight(del.getRight());
-                }
-                //Case 4: del has no child.
-                else {
-                    curr.setRight(null);
-                }
-                return;
-            }
-
-            if(curr.getLeft() != null) {
-                queue.add(curr.getLeft());
-            }
-
-            if(curr.getRight() != null) {
-                queue.add(curr.getRight());
-            }
-        }
-    }
 }

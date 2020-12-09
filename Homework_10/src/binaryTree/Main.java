@@ -4,33 +4,40 @@ public class Main {
     public static void main(String[] args) {
         BinaryTree tree = new BinaryTree();
 
-        //       9(0)
-        //     /   \
-        //    11(1) 3(2)
-        //   /  \    \
-        //  8(3) 7(4) 15(5)
-        //      /
-        //     6(6)
+        //       9
+        //     /    \
+        //    6      14
+        //   /  \    / \
+        //  2    8  12  15
+        //      /   /
+        //     7   11
 
-        tree.setHead(new Node(9));
-        tree.getHead().setLeft(new Node(11));
-        tree.getHead().setRight(new Node(3));
-        tree.getHead().getLeft().setLeft(new Node(8));
-        tree.getHead().getLeft().setRight(new Node(7));
-        tree.getHead().getRight().setRight(new Node(15));
-        tree.getHead().getLeft().getRight().setLeft(new Node(6));
+        //BFS: 9, 6, 14, 2, 8, 12, 15, 7, 11
+        //DFS: 2, 6, 7, 8, 9, 11, 12, 14, 15
 
+        tree.add(9);
+        tree.add(6);
+        tree.add(14);
+        tree.add(2);
+        tree.add(8);
+        tree.add(7);
+        tree.add(12);
+        tree.add(15);
+        tree.add(11);
+
+
+        tree.BFS();
         tree.DFS();
-        //tree.BFS();
+
+        /*tree.deleteByData(9);
+        tree.DFS();
+        tree.deleteByData(11);
+        tree.DFS();*/
 
         /*tree.deleteByIndex(9);
         tree.DFS();
-        tree.deleteByIndex(1);
+        tree.deleteByIndex(8);
         tree.DFS();*/
 
-        tree.deleteByData(11);
-        tree.DFS();
-        tree.deleteByData(8);
-        tree.DFS();
     }
 }
