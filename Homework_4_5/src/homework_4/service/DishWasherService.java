@@ -4,10 +4,12 @@ import homework_4.model.DishWasher;
 import homework_4.model.interfaces.CleaningDevice;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class DishWasherService implements CleaningDevice {
-    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\DishWasher.txt";
+public class DishWasherService /*implements CleaningDevice*/ {
+    private static final String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\DishWasher.txt";
     private static int id = 0;
 
     private DishWasher create() {
@@ -77,43 +79,39 @@ public class DishWasherService implements CleaningDevice {
         }
     }
 
-    public DishWasher[] getAll() {
+    public List<DishWasher> getAll() {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while(reader1.readLine() != null) {
-                n++;
-            }
 
-            DishWasher[] dishWashers = new DishWasher[n];
-            int i = 0;
+            List<DishWasher> dishWashers = new ArrayList<>();
 
-            while ((s = reader2.readLine()) != null) {
+
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
-                dishWashers[i] = new DishWasher();
-                dishWashers[i].setModel(data[1]);
-                dishWashers[i].setColor(data[2]);
-                dishWashers[i].setCapacity(Integer.parseInt(data[3]));
-                dishWashers[i].setWidth(Double.parseDouble(data[4]));
-                dishWashers[i].setHeight(Double.parseDouble(data[5]));
-                dishWashers[i].setDepth(Double.parseDouble(data[6]));
-                dishWashers[i].setAnnouncementYear(Integer.parseInt(data[7]));
-                dishWashers[i].setPrice(Integer.parseInt(data[8]));
-                i++;
+                DishWasher dishWasher = new DishWasher();
+                dishWasher.setModel(data[1]);
+                dishWasher.setColor(data[2]);
+                dishWasher.setCapacity(Integer.parseInt(data[3]));
+                dishWasher.setWidth(Double.parseDouble(data[4]));
+                dishWasher.setHeight(Double.parseDouble(data[5]));
+                dishWasher.setDepth(Double.parseDouble(data[6]));
+                dishWasher.setAnnouncementYear(Integer.parseInt(data[7]));
+                dishWasher.setPrice(Integer.parseInt(data[8]));
+
+                dishWashers.add(dishWasher);
             }
 
-            reader1.close();
-            reader2.close();
+            reader.close();
 
             return dishWashers;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -153,155 +151,126 @@ public class DishWasherService implements CleaningDevice {
 
     }
 
-    public DishWasher[] getByModel(String model) {
+    public List<DishWasher> getByModel(String model) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(data[1].equals(model)) {
-                    n++;
-                }
-            }
-            reader1.close();
 
-            DishWasher[] dishWashers = new DishWasher[n];
-            int i = 0;
+            List<DishWasher> dishWashers = new ArrayList<>();
 
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(data[1].equals(model)) {
-                    dishWashers[i] = new DishWasher();
-                    dishWashers[i].setModel(data[1]);
-                    dishWashers[i].setColor(data[2]);
-                    dishWashers[i].setCapacity(Integer.parseInt(data[3]));
-                    dishWashers[i].setWidth(Double.parseDouble(data[4]));
-                    dishWashers[i].setHeight(Double.parseDouble(data[5]));
-                    dishWashers[i].setDepth(Double.parseDouble(data[6]));
-                    dishWashers[i].setAnnouncementYear(Integer.parseInt(data[7]));
-                    dishWashers[i].setPrice(Integer.parseInt(data[8]));
+                    DishWasher dishWasher = new DishWasher();
+                    dishWasher.setModel(data[1]);
+                    dishWasher.setColor(data[2]);
+                    dishWasher.setCapacity(Integer.parseInt(data[3]));
+                    dishWasher.setWidth(Double.parseDouble(data[4]));
+                    dishWasher.setHeight(Double.parseDouble(data[5]));
+                    dishWasher.setDepth(Double.parseDouble(data[6]));
+                    dishWasher.setAnnouncementYear(Integer.parseInt(data[7]));
+                    dishWasher.setPrice(Integer.parseInt(data[8]));
 
-                    i++;
+                    dishWashers.add(dishWasher);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return dishWashers;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public DishWasher[] getByColor(String color) {
+    public List<DishWasher> getByColor(String color) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(data[2].equals(color)) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<DishWasher> dishWashers = new ArrayList<>();
 
-            DishWasher[] dishWashers = new DishWasher[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(data[2].equals(color)) {
-                    dishWashers[i] = new DishWasher();
-                    dishWashers[i].setModel(data[1]);
-                    dishWashers[i].setColor(data[2]);
-                    dishWashers[i].setCapacity(Integer.parseInt(data[3]));
-                    dishWashers[i].setWidth(Double.parseDouble(data[4]));
-                    dishWashers[i].setHeight(Double.parseDouble(data[5]));
-                    dishWashers[i].setDepth(Double.parseDouble(data[6]));
-                    dishWashers[i].setAnnouncementYear(Integer.parseInt(data[7]));
-                    dishWashers[i].setPrice(Integer.parseInt(data[8]));
+                    DishWasher dishWasher = new DishWasher();
+                    dishWasher.setModel(data[1]);
+                    dishWasher.setColor(data[2]);
+                    dishWasher.setCapacity(Integer.parseInt(data[3]));
+                    dishWasher.setWidth(Double.parseDouble(data[4]));
+                    dishWasher.setHeight(Double.parseDouble(data[5]));
+                    dishWasher.setDepth(Double.parseDouble(data[6]));
+                    dishWasher.setAnnouncementYear(Integer.parseInt(data[7]));
+                    dishWasher.setPrice(Integer.parseInt(data[8]));
 
-                    i++;
+                    dishWashers.add(dishWasher);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return dishWashers;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public DishWasher[] getByPrice(int price) {
+    public List<DishWasher> getByPrice(int price) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(Integer.parseInt(data[8]) == price) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<DishWasher> dishWashers = new ArrayList<>();
 
-            DishWasher[] dishWashers = new DishWasher[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(Integer.parseInt(data[8]) == price) {
-                    dishWashers[i] = new DishWasher();
-                    dishWashers[i].setModel(data[1]);
-                    dishWashers[i].setColor(data[2]);
-                    dishWashers[i].setCapacity(Integer.parseInt(data[3]));
-                    dishWashers[i].setWidth(Double.parseDouble(data[4]));
-                    dishWashers[i].setHeight(Double.parseDouble(data[5]));
-                    dishWashers[i].setDepth(Double.parseDouble(data[6]));
-                    dishWashers[i].setAnnouncementYear(Integer.parseInt(data[7]));
-                    dishWashers[i].setPrice(Integer.parseInt(data[8]));
+                    DishWasher dishWasher = new DishWasher();
+                    dishWasher.setModel(data[1]);
+                    dishWasher.setColor(data[2]);
+                    dishWasher.setCapacity(Integer.parseInt(data[3]));
+                    dishWasher.setWidth(Double.parseDouble(data[4]));
+                    dishWasher.setHeight(Double.parseDouble(data[5]));
+                    dishWasher.setDepth(Double.parseDouble(data[6]));
+                    dishWasher.setAnnouncementYear(Integer.parseInt(data[7]));
+                    dishWasher.setPrice(Integer.parseInt(data[8]));
 
-                    i++;
+                    dishWashers.add(dishWasher);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return dishWashers;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public void print(DishWasher[] dishWashers) {
+    public void print(List<DishWasher> dishWashers) {
         for(DishWasher dishWasher : dishWashers) {
             System.out.println(dishWasher);
         }
     }
 
-    @Override
+    /*@Override
     public void clean() {
         System.out.println("Clean dishes");
-    }
+    }*/
 }

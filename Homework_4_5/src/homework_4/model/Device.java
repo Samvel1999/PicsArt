@@ -6,8 +6,8 @@ public abstract class Device {
     private String color;
     private int announcementYear;
     private int price;
-    private boolean power = false;
-    private boolean powerButton = false;
+    //private boolean power = false;
+    //private boolean powerButton = false;
 
     public String getModel() {
         return model;
@@ -46,7 +46,7 @@ public abstract class Device {
         }
     }
 
-    public boolean getPower() {
+    /*public boolean getPower() {
         return power;
     }
 
@@ -88,7 +88,7 @@ public abstract class Device {
         else {
             System.out.println("Power button is already turn off.");
         }
-    }
+    }*/
 
     @Override
     public String toString() {

@@ -4,10 +4,12 @@ import homework_4.model.VacuumCleaner;
 import homework_4.model.interfaces.CleaningDevice;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class VacuumCleanerService implements CleaningDevice {
-    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\VacuumCleaner.txt";
+public class VacuumCleanerService /*implements CleaningDevice*/ {
+    private static final String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\VacuumCleaner.txt";
     private static int id = 0;
 
     public VacuumCleaner create() {
@@ -70,41 +72,35 @@ public class VacuumCleanerService implements CleaningDevice {
         }
     }
 
-    public VacuumCleaner[] getAll() {
+    public List<VacuumCleaner> getAll() {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while(reader1.readLine() != null) {
-                n++;
-            }
+            List<VacuumCleaner> vacuumCleaners = new ArrayList<>();
 
-            VacuumCleaner[] vacuumCleaners = new VacuumCleaner[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
-                vacuumCleaners[i] = new VacuumCleaner();
-                vacuumCleaners[i].setModel(data[1]);
-                vacuumCleaners[i].setColor(data[2]);
-                vacuumCleaners[i].setWeight(Double.parseDouble(data[3]));
-                vacuumCleaners[i].setFilter(data[4]);
-                vacuumCleaners[i].setAnnouncementYear(Integer.parseInt(data[5]));
-                vacuumCleaners[i].setPrice(Integer.parseInt(data[6]));
-                i++;
+                VacuumCleaner vacuumCleaner = new VacuumCleaner();
+                vacuumCleaner.setModel(data[1]);
+                vacuumCleaner.setColor(data[2]);
+                vacuumCleaner.setWeight(Double.parseDouble(data[3]));
+                vacuumCleaner.setFilter(data[4]);
+                vacuumCleaner.setAnnouncementYear(Integer.parseInt(data[5]));
+                vacuumCleaner.setPrice(Integer.parseInt(data[6]));
+
+                vacuumCleaners.add(vacuumCleaner);
             }
 
-            reader1.close();
-            reader2.close();
+            reader.close();
 
             return vacuumCleaners;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -142,150 +138,121 @@ public class VacuumCleanerService implements CleaningDevice {
 
     }
 
-    public VacuumCleaner[] getByModel(String model) {
+    public List<VacuumCleaner> getByModel(String model) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(data[1].equals(model)) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<VacuumCleaner> vacuumCleaners = new ArrayList<>();
 
-            VacuumCleaner[] vacuumCleaners = new VacuumCleaner[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(data[1].equals(model)) {
-                    vacuumCleaners[i] = new VacuumCleaner();
-                    vacuumCleaners[i].setModel(data[1]);
-                    vacuumCleaners[i].setColor(data[2]);
-                    vacuumCleaners[i].setWeight(Double.parseDouble(data[3]));
-                    vacuumCleaners[i].setFilter(data[4]);
-                    vacuumCleaners[i].setAnnouncementYear(Integer.parseInt(data[5]));
-                    vacuumCleaners[i].setPrice(Integer.parseInt(data[6]));
 
-                    i++;
+                    VacuumCleaner vacuumCleaner = new VacuumCleaner();
+                    vacuumCleaner.setModel(data[1]);
+                    vacuumCleaner.setColor(data[2]);
+                    vacuumCleaner.setWeight(Double.parseDouble(data[3]));
+                    vacuumCleaner.setFilter(data[4]);
+                    vacuumCleaner.setAnnouncementYear(Integer.parseInt(data[5]));
+                    vacuumCleaner.setPrice(Integer.parseInt(data[6]));
+
+                    vacuumCleaners.add(vacuumCleaner);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return vacuumCleaners;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public VacuumCleaner[] getByColor(String color) {
+    public List<VacuumCleaner> getByColor(String color) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(data[2].equals(color)) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<VacuumCleaner> vacuumCleaners = new ArrayList<>();
 
-            VacuumCleaner[] vacuumCleaners = new VacuumCleaner[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(data[2].equals(color)) {
-                    vacuumCleaners[i] = new VacuumCleaner();
-                    vacuumCleaners[i].setModel(data[1]);
-                    vacuumCleaners[i].setColor(data[2]);
-                    vacuumCleaners[i].setWeight(Double.parseDouble(data[3]));
-                    vacuumCleaners[i].setFilter(data[4]);
-                    vacuumCleaners[i].setAnnouncementYear(Integer.parseInt(data[5]));
-                    vacuumCleaners[i].setPrice(Integer.parseInt(data[6]));
+                    VacuumCleaner vacuumCleaner = new VacuumCleaner();
+                    vacuumCleaner.setModel(data[1]);
+                    vacuumCleaner.setColor(data[2]);
+                    vacuumCleaner.setWeight(Double.parseDouble(data[3]));
+                    vacuumCleaner.setFilter(data[4]);
+                    vacuumCleaner.setAnnouncementYear(Integer.parseInt(data[5]));
+                    vacuumCleaner.setPrice(Integer.parseInt(data[6]));
 
-                    i++;
+                    vacuumCleaners.add(vacuumCleaner);
                 }
             }
 
-
-            reader2.close();
+            reader.close();
 
             return vacuumCleaners;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public VacuumCleaner[] getByPrice(int price) {
+    public List<VacuumCleaner> getByPrice(int price) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(Integer.parseInt(data[6]) == price) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<VacuumCleaner> vacuumCleaners = new ArrayList<>();
 
-            VacuumCleaner[] vacuumCleaners = new VacuumCleaner[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(Integer.parseInt(data[6]) == price) {
-                    vacuumCleaners[i] = new VacuumCleaner();
-                    vacuumCleaners[i].setModel(data[1]);
-                    vacuumCleaners[i].setColor(data[2]);
-                    vacuumCleaners[i].setWeight(Double.parseDouble(data[3]));
-                    vacuumCleaners[i].setFilter(data[4]);
-                    vacuumCleaners[i].setAnnouncementYear(Integer.parseInt(data[5]));
-                    vacuumCleaners[i].setPrice(Integer.parseInt(data[6]));
 
-                    i++;
+                    VacuumCleaner vacuumCleaner = new VacuumCleaner();
+                    vacuumCleaner.setModel(data[1]);
+                    vacuumCleaner.setColor(data[2]);
+                    vacuumCleaner.setWeight(Double.parseDouble(data[3]));
+                    vacuumCleaner.setFilter(data[4]);
+                    vacuumCleaner.setAnnouncementYear(Integer.parseInt(data[5]));
+                    vacuumCleaner.setPrice(Integer.parseInt(data[6]));
+
+                    vacuumCleaners.add(vacuumCleaner);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return vacuumCleaners;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public void print(VacuumCleaner[] vacuumCleaners) {
+    public void print(List<VacuumCleaner> vacuumCleaners) {
         for(VacuumCleaner vacuumCleaner : vacuumCleaners) {
             System.out.println(vacuumCleaner);
         }
     }
 
-    @Override
+    /*@Override
     public void clean() {
         System.out.println("Collect dusts.");
-    }
+    }*/
 
 }

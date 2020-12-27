@@ -3,11 +3,13 @@ package homework_4.service;
 import homework_4.model.Printer;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class PrinterService {
 
-    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\Printer.txt";
+    private static final String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\Printer.txt";
     private static int id = 0;
 
     private Printer create() {
@@ -69,41 +71,35 @@ public class PrinterService {
         }
     }
 
-    public Printer[] getAll() {
+    public List<Printer> getAll() {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while(reader1.readLine() != null) {
-                n++;
-            }
+            List<Printer> printers = new ArrayList<>();
 
-            Printer[] printers = new Printer[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
-                printers[i] = new Printer();
-                printers[i].setModel(data[1]);
-                printers[i].setColor(data[2]);
-                printers[i].setMaxNumberOfLists(Integer.parseInt(data[3]));
-                printers[i].setColored(data[4].equals("colored"));
-                printers[i].setAnnouncementYear(Integer.parseInt(data[5]));
-                printers[i].setPrice(Integer.parseInt(data[6]));
-                i++;
+                Printer printer = new Printer();
+                printer.setModel(data[1]);
+                printer.setColor(data[2]);
+                printer.setMaxNumberOfLists(Integer.parseInt(data[3]));
+                printer.setColored(data[4].equals("colored"));
+                printer.setAnnouncementYear(Integer.parseInt(data[5]));
+                printer.setPrice(Integer.parseInt(data[6]));
+
+                printers.add(printer);
             }
 
-            reader1.close();
-            reader2.close();
+            reader.close();
 
             return printers;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -141,198 +137,161 @@ public class PrinterService {
 
     }
 
-    public Printer[] getByPrice(int price) {
+    public List<Printer> getByPrice(int price) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(Integer.parseInt(data[6]) == price) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<Printer> printers = new ArrayList<>();
 
-            Printer[] printers = new Printer[n];
-            int i = 0;
 
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(Integer.parseInt(data[6]) == price) {
-                    printers[i] = new Printer();
-                    printers[i].setModel(data[1]);
-                    printers[i].setColor(data[2]);
-                    printers[i].setMaxNumberOfLists(Integer.parseInt(data[3]));
-                    printers[i].setColored(data[4].equals("colored"));
-                    printers[i].setAnnouncementYear(Integer.parseInt(data[5]));
-                    printers[i].setPrice(Integer.parseInt(data[6]));
+                    Printer printer = new Printer();
+                    printer.setModel(data[1]);
+                    printer.setColor(data[2]);
+                    printer.setMaxNumberOfLists(Integer.parseInt(data[3]));
+                    printer.setColored(data[4].equals("colored"));
+                    printer.setAnnouncementYear(Integer.parseInt(data[5]));
+                    printer.setPrice(Integer.parseInt(data[6]));
 
-                    i++;
+                    printers.add(printer);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return printers;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public Printer[] getByModel(String model) {
+    public List<Printer> getByModel(String model) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(data[1].equals(model)) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<Printer> printers = new ArrayList<>();
 
-            Printer[] printers = new Printer[n];
-            int i = 0;
 
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(data[1].equals(model)) {
-                    printers[i] = new Printer();
-                    printers[i].setModel(data[1]);
-                    printers[i].setColor(data[2]);
-                    printers[i].setMaxNumberOfLists(Integer.parseInt(data[3]));
-                    printers[i].setColored(data[4].equals("colored"));
-                    printers[i].setAnnouncementYear(Integer.parseInt(data[5]));
-                    printers[i].setPrice(Integer.parseInt(data[6]));
+                    Printer printer = new Printer();
+                    printer.setModel(data[1]);
+                    printer.setColor(data[2]);
+                    printer.setMaxNumberOfLists(Integer.parseInt(data[3]));
+                    printer.setColored(data[4].equals("colored"));
+                    printer.setAnnouncementYear(Integer.parseInt(data[5]));
+                    printer.setPrice(Integer.parseInt(data[6]));
 
-                    i++;
+                    printers.add(printer);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return printers;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public Printer[] getByColor(String color) {
+    public List<Printer> getByColor(String color) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(data[2].equals(color)) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<Printer> printers = new ArrayList<>();
 
-            Printer[] printers = new Printer[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(data[2].equals(color)) {
-                    printers[i] = new Printer();
-                    printers[i].setModel(data[1]);
-                    printers[i].setColor(data[2]);
-                    printers[i].setMaxNumberOfLists(Integer.parseInt(data[3]));
-                    printers[i].setColored(data[4].equals("colored"));
-                    printers[i].setAnnouncementYear(Integer.parseInt(data[5]));
-                    printers[i].setPrice(Integer.parseInt(data[6]));
+                    Printer printer = new Printer();
+                    printer.setModel(data[1]);
+                    printer.setColor(data[2]);
+                    printer.setMaxNumberOfLists(Integer.parseInt(data[3]));
+                    printer.setColored(data[4].equals("colored"));
+                    printer.setAnnouncementYear(Integer.parseInt(data[5]));
+                    printer.setPrice(Integer.parseInt(data[6]));
 
-                    i++;
+                    printers.add(printer);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return printers;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public Printer[] getByColored(boolean isColored) {
+    public List<Printer> getByColored(boolean isColored) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
-            String colored = isColored? "colored" : "non-colored";
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(data[4].equals(colored)) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<Printer> printers = new ArrayList<>();
 
-            Printer[] printers = new Printer[n];
-            int i = 0;
 
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
-                if(data[4].equals(colored)) {
-                    printers[i] = new Printer();
-                    printers[i].setModel(data[1]);
-                    printers[i].setColor(data[2]);
-                    printers[i].setMaxNumberOfLists(Integer.parseInt(data[3]));
-                    printers[i].setColored(isColored);
-                    printers[i].setAnnouncementYear(Integer.parseInt(data[5]));
-                    printers[i].setPrice(Integer.parseInt(data[6]));
-                    i++;
+                if(Boolean.parseBoolean(data[4]) == isColored) {
+                    Printer printer = new Printer();
+                    printer.setModel(data[1]);
+                    printer.setColor(data[2]);
+                    printer.setMaxNumberOfLists(Integer.parseInt(data[3]));
+                    printer.setColored(isColored);
+                    printer.setAnnouncementYear(Integer.parseInt(data[5]));
+                    printer.setPrice(Integer.parseInt(data[6]));
+
+                    printers.add(printer);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return printers;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public void print(Printer[] printers) {
+    public void print(List<Printer> printers) {
         for(Printer printer : printers) {
             System.out.println(printer);
         }
     }
 
-    public void print(int numberOfSamples) {
+    /*public void print(int numberOfSamples) {
         System.out.println("Print " + numberOfSamples + " sample");
     }
 
     public void xerox(int numberOfSamples) {
         System.out.println("Xerox " + numberOfSamples + " sample");
-    }
+    }*/
 
 }

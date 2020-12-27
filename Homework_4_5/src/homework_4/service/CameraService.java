@@ -4,11 +4,13 @@ import homework_4.model.Camera;
 import homework_4.model.interfaces.ShootingDevice;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class CameraService implements ShootingDevice {
+public class CameraService /*implements ShootingDevice*/ {
 
-    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\Camera.txt";
+    private static final String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\Camera.txt";
     private static int id = 0;
 
     public Camera create() {
@@ -76,43 +78,37 @@ public class CameraService implements ShootingDevice {
         }
     }
 
-    public Camera[] getAll() {
+    public List<Camera> getAll() {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
-            String s;
-            int n = 0;
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+            
+            String str;
 
-            while(reader1.readLine() != null) {
-                n++;
+            List<Camera> cameras = new ArrayList<>();
+
+            while ((str = reader.readLine()) != null) {
+                String[] data = str.split(",");
+
+                Camera camera = new Camera();
+                camera.setModel(data[1]);
+                camera.setColor(data[2]);
+                camera.setPixel(Integer.parseInt(data[3]));
+                camera.setMemory(Integer.parseInt(data[4]));
+                camera.setWeight(Integer.parseInt(data[5]));
+                camera.setBluetooth(data[6].equals("bluetooth"));
+                camera.setAnnouncementYear(Integer.parseInt(data[7]));
+                camera.setPrice(Integer.parseInt(data[8]));
+                
+                cameras.add(camera);
             }
 
-            Camera[] cameras = new Camera[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
-                String[] data = s.split(",");
-
-                cameras[i] = new Camera();
-                cameras[i].setModel(data[1]);
-                cameras[i].setColor(data[2]);
-                cameras[i].setPixel(Integer.parseInt(data[3]));
-                cameras[i].setMemory(Integer.parseInt(data[4]));
-                cameras[i].setWeight(Integer.parseInt(data[5]));
-                cameras[i].setBluetooth(data[6].equals("bluetooth"));
-                cameras[i].setAnnouncementYear(Integer.parseInt(data[7]));
-                cameras[i].setPrice(Integer.parseInt(data[8]));
-                i++;
-            }
-
-            reader1.close();
-            reader2.close();
-
+            reader.close();
+            
             return cameras;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -152,154 +148,126 @@ public class CameraService implements ShootingDevice {
 
     }
 
-    public Camera[] getByModel(String model) {
+    public List<Camera> getByModel(String model) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(data[1].equals(model)) {
-                    n++;
-                }
-            }
-            reader1.close();
 
-            Camera[] cameras = new Camera[n];
-            int i = 0;
+            List<Camera> cameras = new ArrayList<>();
 
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(data[1].equals(model)) {
-                    cameras[i] = new Camera();
-                    cameras[i].setModel(data[1]);
-                    cameras[i].setColor(data[2]);
-                    cameras[i].setPixel(Integer.parseInt(data[3]));
-                    cameras[i].setMemory(Integer.parseInt(data[4]));
-                    cameras[i].setWeight(Integer.parseInt(data[5]));
-                    cameras[i].setBluetooth(data[6].equals("bluetooth"));
-                    cameras[i].setAnnouncementYear(Integer.parseInt(data[7]));
-                    cameras[i].setPrice(Integer.parseInt(data[8]));
+                    Camera camera = new Camera();
+                    camera.setModel(data[1]);
+                    camera.setColor(data[2]);
+                    camera.setPixel(Integer.parseInt(data[3]));
+                    camera.setMemory(Integer.parseInt(data[4]));
+                    camera.setWeight(Integer.parseInt(data[5]));
+                    camera.setBluetooth(data[6].equals("bluetooth"));
+                    camera.setAnnouncementYear(Integer.parseInt(data[7]));
+                    camera.setPrice(Integer.parseInt(data[8]));
 
-                    i++;
+                    cameras.add(camera);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return cameras;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public Camera[] getByPixel(int pixel) {
+    public List<Camera> getByPixel(int pixel) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(Integer.parseInt(data[3]) == pixel) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<Camera> cameras = new ArrayList<>();
 
-            Camera[] cameras = new Camera[n];
-            int i = 0;
 
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(Integer.parseInt(data[3]) == pixel) {
-                    cameras[i] = new Camera();
-                    cameras[i].setModel(data[1]);
-                    cameras[i].setColor(data[2]);
-                    cameras[i].setPixel(Integer.parseInt(data[3]));
-                    cameras[i].setMemory(Integer.parseInt(data[4]));
-                    cameras[i].setWeight(Integer.parseInt(data[5]));
-                    cameras[i].setBluetooth(data[6].equals("bluetooth"));
-                    cameras[i].setAnnouncementYear(Integer.parseInt(data[7]));
-                    cameras[i].setPrice(Integer.parseInt(data[8]));
+                    Camera camera = new Camera();
+                    camera.setModel(data[1]);
+                    camera.setColor(data[2]);
+                    camera.setPixel(Integer.parseInt(data[3]));
+                    camera.setMemory(Integer.parseInt(data[4]));
+                    camera.setWeight(Integer.parseInt(data[5]));
+                    camera.setBluetooth(data[6].equals("bluetooth"));
+                    camera.setAnnouncementYear(Integer.parseInt(data[7]));
+                    camera.setPrice(Integer.parseInt(data[8]));
 
-                    i++;
+                    cameras.add(camera);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return cameras;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public Camera[] getByPrice(int price) {
+    public List<Camera> getByPrice(int price) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(Integer.parseInt(data[8]) == price) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<Camera> cameras = new ArrayList<>();
 
-            Camera[] cameras = new Camera[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(Integer.parseInt(data[8]) == price) {
-                    cameras[i] = new Camera();
-                    cameras[i].setModel(data[1]);
-                    cameras[i].setColor(data[2]);
-                    cameras[i].setPixel(Integer.parseInt(data[3]));
-                    cameras[i].setMemory(Integer.parseInt(data[4]));
-                    cameras[i].setWeight(Integer.parseInt(data[5]));
-                    cameras[i].setBluetooth(data[6].equals("bluetooth"));
-                    cameras[i].setAnnouncementYear(Integer.parseInt(data[7]));
-                    cameras[i].setPrice(Integer.parseInt(data[8]));
+                    Camera camera = new Camera();
+                    camera.setModel(data[1]);
+                    camera.setColor(data[2]);
+                    camera.setPixel(Integer.parseInt(data[3]));
+                    camera.setMemory(Integer.parseInt(data[4]));
+                    camera.setWeight(Integer.parseInt(data[5]));
+                    camera.setBluetooth(data[6].equals("bluetooth"));
+                    camera.setAnnouncementYear(Integer.parseInt(data[7]));
+                    camera.setPrice(Integer.parseInt(data[8]));
 
-                    i++;
+                    cameras.add(camera);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return cameras;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public void print(Camera[] cameras) {
+    public void print(List<Camera> cameras) {
         for(Camera camera : cameras) {
             System.out.println(camera);
         }
     }
 
-    @Override
+    /*@Override
     public void takePhoto() {
         System.out.println("Take a photo with camera");
     }
@@ -307,5 +275,5 @@ public class CameraService implements ShootingDevice {
     @Override
     public void takeVideo() {
         System.out.println("Take a video with camera");
-    }
+    }*/
 }

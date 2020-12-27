@@ -1,11 +1,7 @@
 package homework_4.main;
 
 import homework_4.menu.Menu;
-import homework_4.model.Laptop;
-import homework_4.model.PlayingConsole;
-import homework_4.model.RecordPlayer;
-import homework_4.model.WashingMachine;
-import homework_4.service.*;
+import homework_4.model.User;
 
 public class Main {
     public static void main(String[] args) {
@@ -192,6 +188,12 @@ public class Main {
         System.out.println("---------------------------------------");*/
 
         Menu menu = new Menu();
-        menu.menu();
+        menu.startMenu();
+
+        /*User user = new User();
+        user.setFullName("Armen Hovsepyan");
+        user.setUsername("ArmenHovsepy");
+        user.setEmail("armenHovsepyan@gmail.com");
+        user.setPassword("Armen123Hov");*/
     }
 }

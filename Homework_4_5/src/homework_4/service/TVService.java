@@ -4,6 +4,8 @@ import homework_4.model.Screen;
 import homework_4.model.TV;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class TVService {
@@ -76,43 +78,37 @@ public class TVService {
         }
     }
 
-    public TV[] getAll() {
+    public List<TV> getAll() {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while(reader1.readLine() != null) {
-                n++;
-            }
+            List<TV> tvs = new ArrayList<>();
 
-            reader1.close();
-            TV[] tvs = new TV[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
-                tvs[i] = new TV();
-                tvs[i].setModel(data[1]);
-                tvs[i].setColor(data[2]);
-                tvs[i].setSmart(data[3].equals("Is smart"));
+                TV tv = new TV();
+                tv.setModel(data[1]);
+                tv.setColor(data[2]);
+                tv.setSmart(data[3].equals("Is smart"));
                 Screen screen = new Screen();
                 screen.setWidth(Integer.parseInt(data[4]));
                 screen.setHeight(Integer.parseInt(data[5]));
-                tvs[i].setScreen(screen);
-                tvs[i].setAnnouncementYear(Integer.parseInt(data[6]));
-                tvs[i].setPrice(Integer.parseInt(data[7]));
-                i++;
+                tv.setScreen(screen);
+                tv.setAnnouncementYear(Integer.parseInt(data[6]));
+                tv.setPrice(Integer.parseInt(data[7]));
+
+                tvs.add(tv);
             }
 
-            reader2.close();
+            reader.close();
             return tvs;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -151,149 +147,124 @@ public class TVService {
         }
     }
 
-    public TV[] getByPrice(int price) {
+    public List<TV> getByPrice(int price) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(Integer.parseInt(data[7]) == price) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<TV> tvs = new ArrayList<>();
 
-            TV[] tvs = new TV[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(Integer.parseInt(data[7]) == price) {
-                    tvs[i] = new TV();
-                    tvs[i].setModel(data[1]);
-                    tvs[i].setColor(data[2]);
-                    tvs[i].setSmart(data[3].equals("Is smart"));
+
+                    TV tv = new TV();
+                    tv.setModel(data[1]);
+                    tv.setColor(data[2]);
+                    tv.setSmart(data[3].equals("Is smart"));
                     Screen screen = new Screen();
                     screen.setWidth(Integer.parseInt(data[4]));
                     screen.setHeight(Integer.parseInt(data[5]));
-                    tvs[i].setScreen(screen);
-                    tvs[i].setAnnouncementYear(Integer.parseInt(data[6]));
-                    tvs[i].setPrice(Integer.parseInt(data[7]));
-                    i++;
+                    tv.setScreen(screen);
+                    tv.setAnnouncementYear(Integer.parseInt(data[6]));
+                    tv.setPrice(Integer.parseInt(data[7]));
+
+                    tvs.add(tv);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return tvs;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public TV[] getByModel(String model) {
+    public List<TV> getByModel(String model) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(data[1].equals(model)) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<TV> tvs = new ArrayList<>();
 
-            TV[] tvs = new TV[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(data[1].equals(model)) {
-                    tvs[i] = new TV();
-                    tvs[i].setModel(data[1]);
-                    tvs[i].setColor(data[2]);
-                    tvs[i].setSmart(data[3].equals("Is smart"));
+
+                    TV tv = new TV();
+                    tv.setModel(data[1]);
+                    tv.setColor(data[2]);
+                    tv.setSmart(data[3].equals("Is smart"));
                     Screen screen = new Screen();
                     screen.setWidth(Integer.parseInt(data[4]));
                     screen.setHeight(Integer.parseInt(data[5]));
-                    tvs[i].setScreen(screen);
-                    tvs[i].setAnnouncementYear(Integer.parseInt(data[6]));
-                    tvs[i].setPrice(Integer.parseInt(data[7]));
-                    i++;
+                    tv.setScreen(screen);
+                    tv.setAnnouncementYear(Integer.parseInt(data[6]));
+                    tv.setPrice(Integer.parseInt(data[7]));
+
+                    tvs.add(tv);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return tvs;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public TV[] getBySmart(boolean isSmart) {
+    public List<TV> getBySmart(boolean isSmart) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
-            String smart = isSmart? "Is smart" : "Is not smart";
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(data[3].equals(smart)) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<TV> tvs = new ArrayList<>();
 
-            TV[] tvs = new TV[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
-                if(data[3].equals(smart)) {
-                    tvs[i] = new TV();
-                    tvs[i].setModel(data[1]);
-                    tvs[i].setColor(data[2]);
-                    tvs[i].setSmart(isSmart);
+                if(Boolean.parseBoolean(data[3]) == isSmart) {
+
+                    TV tv = new TV();
+                    tv.setModel(data[1]);
+                    tv.setColor(data[2]);
+                    tv.setSmart(isSmart);
                     Screen screen = new Screen();
                     screen.setWidth(Integer.parseInt(data[4]));
                     screen.setHeight(Integer.parseInt(data[5]));
-                    tvs[i].setScreen(screen);
-                    tvs[i].setAnnouncementYear(Integer.parseInt(data[6]));
-                    tvs[i].setPrice(Integer.parseInt(data[7]));
-                    i++;
+                    tv.setScreen(screen);
+                    tv.setAnnouncementYear(Integer.parseInt(data[6]));
+                    tv.setPrice(Integer.parseInt(data[7]));
+
+                    tvs.add(tv);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return tvs;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public void print(TV[] tvs) {
+    public void print(List<TV> tvs) {
         for(TV tv : tvs) {
             System.out.println(tv);
         }

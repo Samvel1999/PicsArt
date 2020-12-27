@@ -7,10 +7,12 @@ import homework_4.model.interfaces.GamingDevice;
 import homework_4.model.interfaces.MusicDevice;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class LaptopService implements MusicDevice, GamingDevice, CallingDevice {
-    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\Laptop.txt";
+public class LaptopService /*implements MusicDevice, GamingDevice, CallingDevice*/ {
+    private static final String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\Laptop.txt";
     private static int id = 0;
 
     public Laptop create() {
@@ -85,47 +87,40 @@ public class LaptopService implements MusicDevice, GamingDevice, CallingDevice {
         }
     }
 
-    public Laptop[] getAll() {
+    public List<Laptop> getAll() {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while(reader1.readLine() != null) {
-                n++;
-            }
+            List<Laptop> laptops = new ArrayList<>();
 
-            reader1.close();
-
-            Laptop[] laptops = new Laptop[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
-                laptops[i] = new Laptop();
-                laptops[i].setModel(data[1]);
-                laptops[i].setColor(data[2]);
-                laptops[i].setCpu(data[3]);
-                laptops[i].setHardDiscCapacity(Integer.parseInt(data[4]));
-                laptops[i].setRam(Integer.parseInt(data[5]));
-                laptops[i].setCamera(Integer.parseInt(data[6]));
+                Laptop laptop = new Laptop();
+                laptop.setModel(data[1]);
+                laptop.setColor(data[2]);
+                laptop.setCpu(data[3]);
+                laptop.setHardDiscCapacity(Integer.parseInt(data[4]));
+                laptop.setRam(Integer.parseInt(data[5]));
+                laptop.setCamera(Integer.parseInt(data[6]));
                 Screen screen = new Screen();
                 screen.setWidth(Integer.parseInt(data[7]));
                 screen.setHeight(Integer.parseInt(data[8]));
-                laptops[i].setScreen(screen);
-                laptops[i].setAnnouncementYear(Integer.parseInt(data[9]));
-                laptops[i].setPrice(Integer.parseInt(data[10]));
-                i++;
+                laptop.setScreen(screen);
+                laptop.setAnnouncementYear(Integer.parseInt(data[9]));
+                laptop.setPrice(Integer.parseInt(data[10]));
+
+                laptops.add(laptop);
             }
 
-            reader2.close();
+            reader.close();
             return laptops;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -166,214 +161,177 @@ public class LaptopService implements MusicDevice, GamingDevice, CallingDevice {
         }
     }
 
-    public Laptop[] getByPrice(int price) {
+    public List<Laptop> getByPrice(int price) {
         try {
-            BufferedReader userReader1 = new BufferedReader(new FileReader(path));
-            BufferedReader userReader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = userReader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(Integer.parseInt(data[10]) == price) {
-                    n++;
-                }
-            }
+            List<Laptop> laptops = new ArrayList<>();
 
-            Laptop[] laptops = new Laptop[n];
-            int i = 0;
-
-            while ((s = userReader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(Integer.parseInt(data[10]) == price) {
-                    laptops[i] = new Laptop();
-                    laptops[i].setModel(data[1]);
-                    laptops[i].setColor(data[2]);
-                    laptops[i].setCpu(data[3]);
-                    laptops[i].setHardDiscCapacity(Integer.parseInt(data[4]));
-                    laptops[i].setRam(Integer.parseInt(data[5]));
-                    laptops[i].setCamera(Integer.parseInt(data[6]));
+                    Laptop laptop = new Laptop();
+                    laptop.setModel(data[1]);
+                    laptop.setColor(data[2]);
+                    laptop.setCpu(data[3]);
+                    laptop.setHardDiscCapacity(Integer.parseInt(data[4]));
+                    laptop.setRam(Integer.parseInt(data[5]));
+                    laptop.setCamera(Integer.parseInt(data[6]));
                     Screen screen = new Screen();
                     screen.setWidth(Integer.parseInt(data[7]));
                     screen.setHeight(Integer.parseInt(data[8]));
-                    laptops[i].setScreen(screen);
-                    laptops[i].setAnnouncementYear(Integer.parseInt(data[9]));
-                    laptops[i].setPrice(Integer.parseInt(data[10]));
-                    i++;
+                    laptop.setScreen(screen);
+                    laptop.setAnnouncementYear(Integer.parseInt(data[9]));
+                    laptop.setPrice(Integer.parseInt(data[10]));
+
+                    laptops.add(laptop);
                 }
             }
 
-            userReader1.close();
-            userReader2.close();
+            reader.close();
 
             return laptops;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public Laptop[] getByModel(String model) {
+    public List<Laptop> getByModel(String model) {
         try {
-            BufferedReader userReader1 = new BufferedReader(new FileReader(path));
-            BufferedReader userReader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = userReader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(data[1].equals(model)) {
-                    n++;
-                }
-            }
+            List<Laptop> laptops= new ArrayList<>();
 
-            Laptop[] laptops = new Laptop[n];
-            int i = 0;
-
-            while ((s = userReader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(data[1].equals(model)) {
-                    laptops[i] = new Laptop();
-                    laptops[i].setModel(data[1]);
-                    laptops[i].setColor(data[2]);
-                    laptops[i].setCpu(data[3]);
-                    laptops[i].setHardDiscCapacity(Integer.parseInt(data[4]));
-                    laptops[i].setRam(Integer.parseInt(data[5]));
-                    laptops[i].setCamera(Integer.parseInt(data[6]));
+                    Laptop laptop = new Laptop();
+                    laptop.setModel(data[1]);
+                    laptop.setColor(data[2]);
+                    laptop.setCpu(data[3]);
+                    laptop.setHardDiscCapacity(Integer.parseInt(data[4]));
+                    laptop.setRam(Integer.parseInt(data[5]));
+                    laptop.setCamera(Integer.parseInt(data[6]));
                     Screen screen = new Screen();
                     screen.setWidth(Integer.parseInt(data[7]));
                     screen.setHeight(Integer.parseInt(data[8]));
-                    laptops[i].setScreen(screen);
-                    laptops[i].setAnnouncementYear(Integer.parseInt(data[9]));
-                    laptops[i].setPrice(Integer.parseInt(data[10]));
-                    i++;
+                    laptop.setScreen(screen);
+                    laptop.setAnnouncementYear(Integer.parseInt(data[9]));
+                    laptop.setPrice(Integer.parseInt(data[10]));
+
+                    laptops.add(laptop);
                 }
             }
 
-            userReader1.close();
-            userReader2.close();
+            reader.close();
 
             return laptops;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public Laptop[] getByColor(String color) {
+    public List<Laptop> getByColor(String color) {
         try {
-            BufferedReader userReader1 = new BufferedReader(new FileReader(path));
-            BufferedReader userReader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = userReader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(data[2].equals(color)) {
-                    n++;
-                }
-            }
+            List<Laptop> laptops = new ArrayList<>();
 
-            Laptop[] laptops = new Laptop[n];
-            int i = 0;
-
-            while ((s = userReader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(data[2].equals(color)) {
-                    laptops[i] = new Laptop();
-                    laptops[i].setModel(data[1]);
-                    laptops[i].setColor(data[2]);
-                    laptops[i].setCpu(data[3]);
-                    laptops[i].setHardDiscCapacity(Integer.parseInt(data[4]));
-                    laptops[i].setRam(Integer.parseInt(data[5]));
-                    laptops[i].setCamera(Integer.parseInt(data[6]));
+                    Laptop laptop = new Laptop();
+                    laptop.setModel(data[1]);
+                    laptop.setColor(data[2]);
+                    laptop.setCpu(data[3]);
+                    laptop.setHardDiscCapacity(Integer.parseInt(data[4]));
+                    laptop.setRam(Integer.parseInt(data[5]));
+                    laptop.setCamera(Integer.parseInt(data[6]));
                     Screen screen = new Screen();
                     screen.setWidth(Integer.parseInt(data[7]));
                     screen.setHeight(Integer.parseInt(data[8]));
-                    laptops[i].setScreen(screen);
-                    laptops[i].setAnnouncementYear(Integer.parseInt(data[9]));
-                    laptops[i].setPrice(Integer.parseInt(data[10]));
-                    i++;
+                    laptop.setScreen(screen);
+                    laptop.setAnnouncementYear(Integer.parseInt(data[9]));
+                    laptop.setPrice(Integer.parseInt(data[10]));
+
+                    laptops.add(laptop);
                 }
             }
 
-            userReader1.close();
-            userReader2.close();
+            reader.close();
 
             return laptops;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public Laptop[] getByRam(int ram) {
+    public List<Laptop> getByRam(int ram) {
         try {
-            BufferedReader userReader1 = new BufferedReader(new FileReader(path));
-            BufferedReader userReader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = userReader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(Integer.parseInt(data[5]) == ram) {
-                    n++;
-                }
-            }
+            List<Laptop> laptops = new ArrayList<>();
 
-            userReader1.close();
-            Laptop[] laptops = new Laptop[n];
-            int i = 0;
-
-            while ((s = userReader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(Integer.parseInt(data[5]) == ram) {
-                    laptops[i] = new Laptop();
-                    laptops[i].setModel(data[1]);
-                    laptops[i].setColor(data[2]);
-                    laptops[i].setCpu(data[3]);
-                    laptops[i].setHardDiscCapacity(Integer.parseInt(data[4]));
-                    laptops[i].setRam(Integer.parseInt(data[5]));
-                    laptops[i].setCamera(Integer.parseInt(data[6]));
+                    Laptop laptop = new Laptop();
+                    laptop.setModel(data[1]);
+                    laptop.setColor(data[2]);
+                    laptop.setCpu(data[3]);
+                    laptop.setHardDiscCapacity(Integer.parseInt(data[4]));
+                    laptop.setRam(Integer.parseInt(data[5]));
+                    laptop.setCamera(Integer.parseInt(data[6]));
                     Screen screen = new Screen();
                     screen.setWidth(Integer.parseInt(data[7]));
                     screen.setHeight(Integer.parseInt(data[8]));
-                    laptops[i].setScreen(screen);
-                    laptops[i].setAnnouncementYear(Integer.parseInt(data[9]));
-                    laptops[i].setPrice(Integer.parseInt(data[10]));
-                    i++;
+                    laptop.setScreen(screen);
+                    laptop.setAnnouncementYear(Integer.parseInt(data[9]));
+                    laptop.setPrice(Integer.parseInt(data[10]));
+
+                    laptops.add(laptop);
                 }
             }
 
-            userReader2.close();
+            reader.close();
 
             return laptops;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public void print(Laptop[] laptops) {
+    public void print(List<Laptop> laptops) {
         for(Laptop laptop : laptops) {
             System.out.println(laptop);
         }
     }
 
-    @Override
+    /*@Override
     public void listenToMusic() {
 
         System.out.println("Listen to music with Laptop");
     }
-
 
     @Override
     public void audiCall() {
@@ -410,5 +368,5 @@ public class LaptopService implements MusicDevice, GamingDevice, CallingDevice {
     @Override
     public void disconnectFromTheInternet() {
         System.out.println("Laptop is disconnected from the Internet");
-    }
+    }*/
 }

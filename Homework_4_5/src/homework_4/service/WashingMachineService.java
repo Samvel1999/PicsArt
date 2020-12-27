@@ -1,13 +1,16 @@
 package homework_4.service;
 
+import com.sun.jdi.ArrayReference;
 import homework_4.model.WashingMachine;
 import homework_4.model.interfaces.CleaningDevice;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class WashingMachineService implements CleaningDevice {
-    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\WashingMachine.txt";
+public class WashingMachineService /*implements CleaningDevice*/ {
+    private static final String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\WashingMachine.txt";
     private static int id = 0;
 
     public WashingMachine create() {
@@ -83,44 +86,38 @@ public class WashingMachineService implements CleaningDevice {
         }
     }
 
-    public WashingMachine[] getAll() {
+    public List<WashingMachine> getAll() {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while (reader1.readLine() != null) {
-                n++;
-            }
+            List<WashingMachine> washingMachines = new ArrayList<>();
 
-            WashingMachine[] washingMachines = new WashingMachine[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
-                washingMachines[i] = new WashingMachine();
-                washingMachines[i].setModel(data[1]);
-                washingMachines[i].setColor(data[2]);
-                washingMachines[i].setWashingCapacity(Integer.parseInt(data[3]));
-                washingMachines[i].setSpinSpeed(Integer.parseInt(data[4]));
-                washingMachines[i].setNumberOfPrograms(Integer.parseInt(data[5]));
-                washingMachines[i].setEnergyClass(data[6]);
-                washingMachines[i].setManufacturerCountry(data[7]);
-                washingMachines[i].setAnnouncementYear(Integer.parseInt(data[8]));
-                washingMachines[i].setPrice(Integer.parseInt(data[9]));
-                i++;
+                WashingMachine washingMachine = new WashingMachine();
+                washingMachine.setModel(data[1]);
+                washingMachine.setColor(data[2]);
+                washingMachine.setWashingCapacity(Integer.parseInt(data[3]));
+                washingMachine.setSpinSpeed(Integer.parseInt(data[4]));
+                washingMachine.setNumberOfPrograms(Integer.parseInt(data[5]));
+                washingMachine.setEnergyClass(data[6]);
+                washingMachine.setManufacturerCountry(data[7]);
+                washingMachine.setAnnouncementYear(Integer.parseInt(data[8]));
+                washingMachine.setPrice(Integer.parseInt(data[9]));
+
+                washingMachines.add(washingMachine);
             }
 
-            reader1.close();
-            reader2.close();
+            reader.close();
 
             return washingMachines;
 
         } catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -161,206 +158,169 @@ public class WashingMachineService implements CleaningDevice {
 
     }
 
-    public WashingMachine[] getByModel(String model) {
+    public List<WashingMachine> getByModel(String model) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(data[1].equals(model)) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<WashingMachine> washingMachines = new ArrayList<>();
 
-            WashingMachine[] washingMachines = new WashingMachine[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(data[1].equals(model)) {
-                    washingMachines[i] = new WashingMachine();
-                    washingMachines[i].setModel(data[1]);
-                    washingMachines[i].setColor(data[2]);
-                    washingMachines[i].setWashingCapacity(Integer.parseInt(data[3]));
-                    washingMachines[i].setSpinSpeed(Integer.parseInt(data[4]));
-                    washingMachines[i].setNumberOfPrograms(Integer.parseInt(data[5]));
-                    washingMachines[i].setEnergyClass(data[6]);
-                    washingMachines[i].setManufacturerCountry(data[7]);
-                    washingMachines[i].setAnnouncementYear(Integer.parseInt(data[8]));
-                    washingMachines[i].setPrice(Integer.parseInt(data[9]));
 
-                    i++;
+                    WashingMachine washingMachine = new WashingMachine();
+                    washingMachine.setModel(data[1]);
+                    washingMachine.setColor(data[2]);
+                    washingMachine.setWashingCapacity(Integer.parseInt(data[3]));
+                    washingMachine.setSpinSpeed(Integer.parseInt(data[4]));
+                    washingMachine.setNumberOfPrograms(Integer.parseInt(data[5]));
+                    washingMachine.setEnergyClass(data[6]);
+                    washingMachine.setManufacturerCountry(data[7]);
+                    washingMachine.setAnnouncementYear(Integer.parseInt(data[8]));
+                    washingMachine.setPrice(Integer.parseInt(data[9]));
+
+                    washingMachines.add(washingMachine);
                 }
             }
 
-
-            reader2.close();
+            reader.close();
 
             return washingMachines;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public WashingMachine[] getByColor(String color) {
+    public List<WashingMachine> getByColor(String color) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(data[2].equals(color)) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<WashingMachine> washingMachines = new ArrayList<>();
 
-            WashingMachine[] washingMachines = new WashingMachine[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(data[2].equals(color)) {
-                    washingMachines[i] = new WashingMachine();
-                    washingMachines[i].setModel(data[1]);
-                    washingMachines[i].setColor(data[2]);
-                    washingMachines[i].setWashingCapacity(Integer.parseInt(data[3]));
-                    washingMachines[i].setSpinSpeed(Integer.parseInt(data[4]));
-                    washingMachines[i].setNumberOfPrograms(Integer.parseInt(data[5]));
-                    washingMachines[i].setEnergyClass(data[6]);
-                    washingMachines[i].setManufacturerCountry(data[7]);
-                    washingMachines[i].setAnnouncementYear(Integer.parseInt(data[8]));
-                    washingMachines[i].setPrice(Integer.parseInt(data[9]));
 
-                    i++;
+                    WashingMachine washingMachine = new WashingMachine();
+                    washingMachine.setModel(data[1]);
+                    washingMachine.setColor(data[2]);
+                    washingMachine.setWashingCapacity(Integer.parseInt(data[3]));
+                    washingMachine.setSpinSpeed(Integer.parseInt(data[4]));
+                    washingMachine.setNumberOfPrograms(Integer.parseInt(data[5]));
+                    washingMachine.setEnergyClass(data[6]);
+                    washingMachine.setManufacturerCountry(data[7]);
+                    washingMachine.setAnnouncementYear(Integer.parseInt(data[8]));
+                    washingMachine.setPrice(Integer.parseInt(data[9]));
+
+                    washingMachines.add(washingMachine);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return washingMachines;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public WashingMachine[] getByPrice(int price) {
+    public List<WashingMachine> getByPrice(int price) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(Integer.parseInt(data[9]) == price) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<WashingMachine> washingMachines = new ArrayList<>();
 
-            WashingMachine[] washingMachines = new WashingMachine[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(Integer.parseInt(data[9]) == price) {
-                    washingMachines[i] = new WashingMachine();
-                    washingMachines[i].setModel(data[1]);
-                    washingMachines[i].setColor(data[2]);
-                    washingMachines[i].setWashingCapacity(Integer.parseInt(data[3]));
-                    washingMachines[i].setSpinSpeed(Integer.parseInt(data[4]));
-                    washingMachines[i].setNumberOfPrograms(Integer.parseInt(data[5]));
-                    washingMachines[i].setEnergyClass(data[6]);
-                    washingMachines[i].setManufacturerCountry(data[7]);
-                    washingMachines[i].setAnnouncementYear(Integer.parseInt(data[8]));
-                    washingMachines[i].setPrice(Integer.parseInt(data[9]));
 
-                    i++;
+                    WashingMachine washingMachine = new WashingMachine();
+                    washingMachine.setModel(data[1]);
+                    washingMachine.setColor(data[2]);
+                    washingMachine.setWashingCapacity(Integer.parseInt(data[3]));
+                    washingMachine.setSpinSpeed(Integer.parseInt(data[4]));
+                    washingMachine.setNumberOfPrograms(Integer.parseInt(data[5]));
+                    washingMachine.setEnergyClass(data[6]);
+                    washingMachine.setManufacturerCountry(data[7]);
+                    washingMachine.setAnnouncementYear(Integer.parseInt(data[8]));
+                    washingMachine.setPrice(Integer.parseInt(data[9]));
+
+                    washingMachines.add(washingMachine);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return washingMachines;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public WashingMachine[] getByManufacturerCountry(String manufacturerCountry) {
+    public List<WashingMachine> getByManufacturerCountry(String manufacturerCountry) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(data[7].equals(manufacturerCountry)) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<WashingMachine> washingMachines = new ArrayList<>();
 
-            WashingMachine[] washingMachines = new WashingMachine[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(data[7].equals(manufacturerCountry)) {
-                    washingMachines[i] = new WashingMachine();
-                    washingMachines[i].setModel(data[1]);
-                    washingMachines[i].setColor(data[2]);
-                    washingMachines[i].setWashingCapacity(Integer.parseInt(data[3]));
-                    washingMachines[i].setSpinSpeed(Integer.parseInt(data[4]));
-                    washingMachines[i].setNumberOfPrograms(Integer.parseInt(data[5]));
-                    washingMachines[i].setEnergyClass(data[6]);
-                    washingMachines[i].setManufacturerCountry(data[7]);
-                    washingMachines[i].setAnnouncementYear(Integer.parseInt(data[8]));
-                    washingMachines[i].setPrice(Integer.parseInt(data[9]));
 
-                    i++;
+                    WashingMachine washingMachine = new WashingMachine();
+                    washingMachine.setModel(data[1]);
+                    washingMachine.setColor(data[2]);
+                    washingMachine.setWashingCapacity(Integer.parseInt(data[3]));
+                    washingMachine.setSpinSpeed(Integer.parseInt(data[4]));
+                    washingMachine.setNumberOfPrograms(Integer.parseInt(data[5]));
+                    washingMachine.setEnergyClass(data[6]);
+                    washingMachine.setManufacturerCountry(data[7]);
+                    washingMachine.setAnnouncementYear(Integer.parseInt(data[8]));
+                    washingMachine.setPrice(Integer.parseInt(data[9]));
+
+                    washingMachines.add(washingMachine);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return washingMachines;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public void print(WashingMachine[] washingMachines) {
+    public void print(List<WashingMachine> washingMachines) {
         for(WashingMachine washingMachine : washingMachines) {
             System.out.println(washingMachine);
         }
     }
 
-    @Override
+    /*@Override
     public void clean() {
         System.out.println("Wash clothes");
-    }
+    }*/
 }

@@ -1,35 +1,68 @@
 package homework_4.menu;
 
-import homework_4.model.Laptop;
-import homework_4.model.Mobile;
-import homework_4.model.RecordPlayer;
+import homework_4.model.*;
 import homework_4.service.*;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Menu {
-    public void menu() {
+    public void startMenu() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Hello: Welcome to our Electronics supermarket.");
-        System.out.println("Please, choose your device:");
-        System.out.println("1: Device with screen");
-        System.out.println("2: Device without screen");
+        Map<Language, HashMap<String, String>> dictionary =  new Dictionary().translate();
+
+        System.out.println("Հայերենի համար սեղմեք 1:");
+        System.out.println("For english press  2.");
+        System.out.println("Для русского языка нажмите 3.");
+        int l = scanner.nextInt();
+        Language language = null;
+        switch (l) {
+            case 1:
+                language = Language.ARMENIAN;
+                break;
+            case 2:
+                language = Language.ENGLISH;
+                break;
+            case 3:
+                language = Language.RUSSIAN;
+                break;
+        }
+
+        System.out.println("1: " + dictionary.get(language).get("Registration"));
+        System.out.println("2: " + dictionary.get(language).get("Login"));
+        l = scanner.nextInt();
+        UserService userService = new UserService();
+        switch (l) {
+            case 1:
+                userService.registration(language);
+                break;
+            case 2:
+                userService.login(language);
+                break;
+        }
+
+        System.out.println(dictionary.get(language).get("Hello: Welcome to our Electronics supermarket."));
+        System.out.println(dictionary.get(language).get("Please, choose your device:"));
+        System.out.println("1: " + dictionary.get(language).get("Device with screen"));
+        System.out.println("2: " + dictionary.get(language).get("Device without screen"));
         int a = scanner.nextInt();
         switch(a) {
             case 1:
-                System.out.println("Please, choose your device with screen");
-                System.out.println("1: Laptop");
-                System.out.println("2: Mobile");
-                System.out.println("3: TV");
+                System.out.println(dictionary.get(language).get("Please, choose your device with screen"));
+                System.out.println("1: " + dictionary.get(language).get("Laptop"));
+                System.out.println("2: " + dictionary.get(language).get("Mobile"));
+                System.out.println("3: " + dictionary.get(language).get("TV"));
                 a = scanner.nextInt();
                 switch (a) {
                     case 1:
-                        System.out.println("Please, choose what to look for in laptops.");
-                        System.out.println("1: Find all");
-                        System.out.println("2: Find by price ");
-                        System.out.println("3: Find by model ");
-                        System.out.println("4: Find by color ");
-                        System.out.println("5: Find by ram ");
+                        //System.out.println(dictionary.get(language).get("Please, choose what to look for ") + dictionary.get(language).get("in laptops."));
+                        System.out.println(dictionary.get(language).get("Please, select filter."));
+                        System.out.println("1: " + dictionary.get(language).get("All"));
+                        System.out.println("2: " + dictionary.get(language).get("Price"));
+                        System.out.println("3: " + dictionary.get(language).get("Model"));
+                        System.out.println("4: " + dictionary.get(language).get("Color"));
+                        System.out.println("5: " + dictionary.get(language).get("RAM"));
                         a = scanner.nextInt();
                         switch (a) {
                             case 1:
@@ -61,13 +94,14 @@ public class Menu {
                         }
                         break;
                     case 2:
-                        System.out.println("Please, choose what to look for in mobiles.");
-                        System.out.println("1: Find all");
-                        System.out.println("2: Find by price ");
-                        System.out.println("3: Find by model ");
-                        System.out.println("4: Find by color ");
-                        System.out.println("5: Find by ram ");
-                        System.out.println("6: Find by os ");
+                        //System.out.println(dictionary.get(language).get("Please, choose what to look for ") + dictionary.get(language).get("in mobiles."));
+                        System.out.println(dictionary.get(language).get("Please, select filter."));
+                        System.out.println("1: " +  dictionary.get(language).get("All"));
+                        System.out.println("2: " + dictionary.get(language).get("Price"));
+                        System.out.println("3: " + dictionary.get(language).get("Model"));
+                        System.out.println("4: " + dictionary.get(language).get("Color"));
+                        System.out.println("5: " + dictionary.get(language).get("RAM"));
+                        System.out.println("6: " + dictionary.get(language).get("OS"));
                         a = scanner.nextInt();
                         switch (a) {
                             case 1:
@@ -105,11 +139,12 @@ public class Menu {
                         }
                         break;
                     case 3:
-                        System.out.println("Please, choose what to look for in tvs.");
-                        System.out.println("1: Find all");
-                        System.out.println("2: Find by price ");
-                        System.out.println("3: Find by model ");
-                        System.out.println("4: Find by smart(true or false) ");
+                        //System.out.println(dictionary.get(language).get("Please, choose what to look for ") + dictionary.get(language).get("in tvs."));
+                        System.out.println(dictionary.get(language).get("Please, select filter."));
+                        System.out.println("1: " +  dictionary.get(language).get("All"));
+                        System.out.println("2: " + dictionary.get(language).get("Price"));
+                        System.out.println("3: " + dictionary.get(language).get("Model"));
+                        System.out.println("4: " + dictionary.get(language).get("Smart"));
                         a = scanner.nextInt();
                         switch (a) {
                             case 1:
@@ -137,23 +172,24 @@ public class Menu {
                 }
                 break;
             case 2:
-                System.out.println("Please, choose your device without screen");
-                System.out.println("1: Washing machine");
-                System.out.println("2: Camera");
-                System.out.println("3: Playing console");
-                System.out.println("4: Record player");
-                System.out.println("5: Vacuum cleaner");
-                System.out.println("6: Printer");
-                System.out.println("7: Dish Washer");
+                System.out.println(dictionary.get(language).get("Please, choose your device without screen"));
+                System.out.println("1: " + dictionary.get(language).get("Washing machine"));
+                System.out.println("2: " + dictionary.get(language).get("Camera"));
+                System.out.println("3: " + dictionary.get(language).get("Playing console"));
+                System.out.println("4: " + dictionary.get(language).get("Vacuum cleaner"));
+                System.out.println("5: " + dictionary.get(language).get("Printer"));
+                System.out.println("6: " + dictionary.get(language).get("Dish washer"));
+                //System.out.println(dictionary.get(language).get("4: Audio system"));
                 a = scanner.nextInt();
                 switch (a) {
                     case 1:
-                        System.out.println("Please, choose what to look for in washing machines.");
-                        System.out.println("1: Find all");
-                        System.out.println("2: Find by price ");
-                        System.out.println("3: Find by model ");
-                        System.out.println("4: Find by color ");
-                        System.out.println("5: Find by manufacturer country ");
+                        //System.out.println(dictionary.get(language).get("Please, choose what to look for ") + dictionary.get(language).get("in washing machines."));
+                        System.out.println(dictionary.get(language).get("Please, select filter."));
+                        System.out.println("1: " +  dictionary.get(language).get("All"));
+                        System.out.println("2: " + dictionary.get(language).get("Price"));
+                        System.out.println("3: " + dictionary.get(language).get("Model"));
+                        System.out.println("4: " + dictionary.get(language).get("Color"));
+                        System.out.println("5: " + dictionary.get(language).get("Manufacturer country"));
                         a = scanner.nextInt();
                         switch (a) {
                             case 1:
@@ -186,11 +222,12 @@ public class Menu {
                         }
                         break;
                     case 2:
-                        System.out.println("Please, choose what to look for in cameras.");
-                        System.out.println("1: Find all");
-                        System.out.println("2: Find by price ");
-                        System.out.println("3: Find by model ");
-                        System.out.println("4: Find by pixel ");
+                        //System.out.println(dictionary.get(language).get("Please, choose what to look for ") + dictionary.get(language).get("in cameras."));
+                        System.out.println(dictionary.get(language).get("Please, select filter."));
+                        System.out.println("1: " +  dictionary.get(language).get("All"));
+                        System.out.println("2: " + dictionary.get(language).get("Price"));
+                        System.out.println("3: " + dictionary.get(language).get("Model"));
+                        System.out.println("4: " + dictionary.get(language).get("Pixel"));
                         a = scanner.nextInt();
                         switch (a) {
                             case 1:
@@ -216,12 +253,13 @@ public class Menu {
                         }
                         break;
                     case 3:
-                        System.out.println("Please, choose what to look for in playing consoles.");
-                        System.out.println("1: Find all");
-                        System.out.println("2: Find by price ");
-                        System.out.println("3: Find by model ");
-                        System.out.println("4: Find by ram ");
-                        System.out.println("5: Find by color ");
+                        //System.out.println(dictionary.get(language).get("Please, choose what to look for ") + dictionary.get(language).get("in playing consoles."));
+                        System.out.println(dictionary.get(language).get("Please, select filter."));
+                        System.out.println("1: " +  dictionary.get(language).get("All"));
+                        System.out.println("2: " + dictionary.get(language).get("Price"));
+                        System.out.println("3: " + dictionary.get(language).get("Model"));
+                        System.out.println("4: " + dictionary.get(language).get("RAM"));
+                        System.out.println("5: " + dictionary.get(language).get("Color"));
                         a = scanner.nextInt();
                         switch (a) {
                             case 1:
@@ -252,12 +290,13 @@ public class Menu {
                                 break;
                         }
                         break;
-                    case 4:
-                        System.out.println("Please, choose what to look for in record players.");
-                        System.out.println("1: Find all");
-                        System.out.println("2: Find by price ");
-                        System.out.println("3: Find by model ");
-                        System.out.println("4: Find by color ");
+                    /*case 4:
+                        System.out.println(dictionary.get(language).get("Please, choose what to look for ") + dictionary.get(language).get("in record players."));
+                        System.out.println(dictionary.get(language).get("Please, select filter."));
+                        System.out.println("1: " +  dictionary.get(language).get("All"));
+                        System.out.println("2: " + dictionary.get(language).get("Price"));
+                        System.out.println("3: " + dictionary.get(language).get("Model"));
+                        System.out.println("4: " + dictionary.get(language).get("Color"));
                         a = scanner.nextInt();
                         switch (a) {
                             case 1:
@@ -282,13 +321,14 @@ public class Menu {
                                 recordPlayerService4.print(recordPlayerService4.getByColor(color));
                                 break;
                         }
-                        break;
-                    case 5:
-                        System.out.println("Please, choose what to look for in vacuum cleaners.");
-                        System.out.println("1: Find all");
-                        System.out.println("2: Find by price ");
-                        System.out.println("3: Find by model ");
-                        System.out.println("4: Find by color ");
+                        break;*/
+                    case 4:
+                        //System.out.println(dictionary.get(language).get("Please, choose what to look for ") + dictionary.get(language).get("in vacuum cleaners."));
+                        System.out.println(dictionary.get(language).get("Please, select filter."));
+                        System.out.println("1: " +  dictionary.get(language).get("All"));
+                        System.out.println("2: " + dictionary.get(language).get("Price"));
+                        System.out.println("3: " + dictionary.get(language).get("Model"));
+                        System.out.println("4: " + dictionary.get(language).get("Color"));
                         a = scanner.nextInt();
                         switch (a) {
                             case 1:
@@ -314,13 +354,14 @@ public class Menu {
                                 break;
                         }
                         break;
-                    case 6:
-                        System.out.println("Please, choose what to look for in printers.");
-                        System.out.println("1: Find all");
-                        System.out.println("2: Find by price ");
-                        System.out.println("3: Find by model ");
-                        System.out.println("4: Find by color ");
-                        System.out.println("5: Find by colored");
+                    case 5:
+                        //System.out.println(dictionary.get(language).get("Please, choose what to look for ") + dictionary.get(language).get("in printers."));
+                        System.out.println(dictionary.get(language).get("Please, select filter."));
+                        System.out.println("1: " +  dictionary.get(language).get("All"));
+                        System.out.println("2: " + dictionary.get(language).get("Price"));
+                        System.out.println("3: " + dictionary.get(language).get("Model"));
+                        System.out.println("4: " + dictionary.get(language).get("Color"));
+                        System.out.println("5: " + dictionary.get(language).get("Colored"));
                         a = scanner.nextInt();
                         switch (a) {
                             case 1:
@@ -352,12 +393,13 @@ public class Menu {
                                 break;
                         }
                         break;
-                    case 7:
-                        System.out.println("Please, choose what to look for in dish washers.");
-                        System.out.println("1: Find all");
-                        System.out.println("2: Find by price ");
-                        System.out.println("3: Find by model ");
-                        System.out.println("4: Find by color ");
+                    case 6:
+                       // System.out.println(dictionary.get(language).get("Please, choose what to look for ") + dictionary.get(language).get("in dish washers."));
+                        System.out.println(dictionary.get(language).get("Please, select filter."));
+                        System.out.println("1: " +  dictionary.get(language).get("All"));
+                        System.out.println("2: " + dictionary.get(language).get("Price"));
+                        System.out.println("3: " + dictionary.get(language).get("Model"));
+                        System.out.println("4: " + dictionary.get(language).get("Color"));
                         a = scanner.nextInt();
                         switch (a) {
                             case 1:

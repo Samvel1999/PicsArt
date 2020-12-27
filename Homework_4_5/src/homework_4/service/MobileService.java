@@ -8,11 +8,13 @@ import homework_4.model.interfaces.MusicDevice;
 import homework_4.model.interfaces.ShootingDevice;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class MobileService implements MusicDevice, GamingDevice, CallingDevice, ShootingDevice {
+public class MobileService /*implements MusicDevice, GamingDevice, CallingDevice, ShootingDevice*/ {
 
-    private static String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\Mobile.txt";
+    private static final String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\Mobile.txt";
     private static int id = 0;
 
     public Mobile create() {
@@ -95,49 +97,43 @@ public class MobileService implements MusicDevice, GamingDevice, CallingDevice, 
         }
     }
 
-    public Mobile[] getAll() {
+    public List<Mobile> getAll() {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while(reader1.readLine() != null) {
-                n++;
-            }
+            List<Mobile> mobiles = new ArrayList<>();
 
-            Mobile[] mobiles = new Mobile[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
-                mobiles[i] = new Mobile();
-                mobiles[i].setModel(data[1]);
-                mobiles[i].setColor(data[2]);
-                mobiles[i].setOs(data[3]);
-                mobiles[i].setRam(Integer.parseInt(data[4]));
-                mobiles[i].setMemory(Integer.parseInt(data[5]));
-                mobiles[i].setFrontCamera(Integer.parseInt(data[6]));
-                mobiles[i].setMainCamera(Integer.parseInt(data[7]));
-                mobiles[i].setBatteryCapacity(Integer.parseInt(data[8]));
-                mobiles[i].setAnnouncementYear(Integer.parseInt(data[9]));
+                Mobile mobile = new Mobile();
+                mobile.setModel(data[1]);
+                mobile.setColor(data[2]);
+                mobile.setOs(data[3]);
+                mobile.setRam(Integer.parseInt(data[4]));
+                mobile.setMemory(Integer.parseInt(data[5]));
+                mobile.setFrontCamera(Integer.parseInt(data[6]));
+                mobile.setMainCamera(Integer.parseInt(data[7]));
+                mobile.setBatteryCapacity(Integer.parseInt(data[8]));
+                mobile.setAnnouncementYear(Integer.parseInt(data[9]));
                 Screen screen = new Screen();
                 screen.setWidth(Integer.parseInt(data[10]));
                 screen.setHeight(Integer.parseInt(data[11]));
-                mobiles[i].setScreen(screen);
-                mobiles[i].setPrice(Integer.parseInt(data[12]));
-                i++;
+                mobile.setScreen(screen);
+                mobile.setPrice(Integer.parseInt(data[12]));
+
+                mobiles.add(mobile);
             }
 
-            reader1.close();
-            reader2.close();
+            reader.close();
 
             return mobiles;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
@@ -183,278 +179,230 @@ public class MobileService implements MusicDevice, GamingDevice, CallingDevice, 
 
     }
 
-    public Mobile[] getByModel(String model) {
+    public List<Mobile> getByModel(String model) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(data[1].equals(model)) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<Mobile> mobiles = new ArrayList<>();
 
-            Mobile[] mobiles = new Mobile[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(data[1].equals(model)) {
-                    mobiles[i] = new Mobile();
-                    mobiles[i].setModel(data[1]);
-                    mobiles[i].setColor(data[2]);
-                    mobiles[i].setOs(data[3]);
-                    mobiles[i].setRam(Integer.parseInt(data[4]));
-                    mobiles[i].setMemory(Integer.parseInt(data[5]));
-                    mobiles[i].setFrontCamera(Integer.parseInt(data[6]));
-                    mobiles[i].setMainCamera(Integer.parseInt(data[7]));
-                    mobiles[i].setBatteryCapacity(Integer.parseInt(data[8]));
-                    mobiles[i].setAnnouncementYear(Integer.parseInt(data[9]));
+                    Mobile mobile = new Mobile();
+                    mobile.setModel(data[1]);
+                    mobile.setColor(data[2]);
+                    mobile.setOs(data[3]);
+                    mobile.setRam(Integer.parseInt(data[4]));
+                    mobile.setMemory(Integer.parseInt(data[5]));
+                    mobile.setFrontCamera(Integer.parseInt(data[6]));
+                    mobile.setMainCamera(Integer.parseInt(data[7]));
+                    mobile.setBatteryCapacity(Integer.parseInt(data[8]));
+                    mobile.setAnnouncementYear(Integer.parseInt(data[9]));
                     Screen screen = new Screen();
                     screen.setWidth(Integer.parseInt(data[10]));
                     screen.setHeight(Integer.parseInt(data[11]));
-                    mobiles[i].setScreen(screen);
-                    mobiles[i].setPrice(Integer.parseInt(data[12]));
+                    mobile.setScreen(screen);
+                    mobile.setPrice(Integer.parseInt(data[12]));
 
-                    i++;
+                    mobiles.add(mobile);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return mobiles;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public Mobile[] getByRam(int ram) {
+    public List<Mobile> getByRam(int ram) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(Integer.parseInt(data[4]) == ram) {
-                    n++;
-                }
-            }
-            reader1.close();
 
-            Mobile[] mobiles = new Mobile[n];
-            int i = 0;
+            List<Mobile> mobiles = new ArrayList<>();
 
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(Integer.parseInt(data[4]) == ram) {
-                    mobiles[i] = new Mobile();
-                    mobiles[i].setModel(data[1]);
-                    mobiles[i].setColor(data[2]);
-                    mobiles[i].setOs(data[3]);
-                    mobiles[i].setRam(Integer.parseInt(data[4]));
-                    mobiles[i].setMemory(Integer.parseInt(data[5]));
-                    mobiles[i].setFrontCamera(Integer.parseInt(data[6]));
-                    mobiles[i].setMainCamera(Integer.parseInt(data[7]));
-                    mobiles[i].setBatteryCapacity(Integer.parseInt(data[8]));
-                    mobiles[i].setAnnouncementYear(Integer.parseInt(data[9]));
+                    Mobile mobile = new Mobile();
+                    mobile.setModel(data[1]);
+                    mobile.setColor(data[2]);
+                    mobile.setOs(data[3]);
+                    mobile.setRam(Integer.parseInt(data[4]));
+                    mobile.setMemory(Integer.parseInt(data[5]));
+                    mobile.setFrontCamera(Integer.parseInt(data[6]));
+                    mobile.setMainCamera(Integer.parseInt(data[7]));
+                    mobile.setBatteryCapacity(Integer.parseInt(data[8]));
+                    mobile.setAnnouncementYear(Integer.parseInt(data[9]));
                     Screen screen = new Screen();
                     screen.setWidth(Integer.parseInt(data[10]));
                     screen.setHeight(Integer.parseInt(data[11]));
-                    mobiles[i].setScreen(screen);
-                    mobiles[i].setPrice(Integer.parseInt(data[12]));
+                    mobile.setScreen(screen);
+                    mobile.setPrice(Integer.parseInt(data[12]));
 
-                    i++;
+                    mobiles.add(mobile);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return mobiles;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public Mobile[] getByPrice(int price) {
+    public List<Mobile> getByPrice(int price) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(Integer.parseInt(data[12]) == price) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<Mobile> mobiles = new ArrayList<>();
 
-            Mobile[] mobiles = new Mobile[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(Integer.parseInt(data[12]) == price) {
-                    mobiles[i] = new Mobile();
-                    mobiles[i].setModel(data[1]);
-                    mobiles[i].setColor(data[2]);
-                    mobiles[i].setOs(data[3]);
-                    mobiles[i].setRam(Integer.parseInt(data[4]));
-                    mobiles[i].setMemory(Integer.parseInt(data[5]));
-                    mobiles[i].setFrontCamera(Integer.parseInt(data[6]));
-                    mobiles[i].setMainCamera(Integer.parseInt(data[7]));
-                    mobiles[i].setBatteryCapacity(Integer.parseInt(data[8]));
-                    mobiles[i].setAnnouncementYear(Integer.parseInt(data[9]));
+                    Mobile mobile = new Mobile();
+                    mobile.setModel(data[1]);
+                    mobile.setColor(data[2]);
+                    mobile.setOs(data[3]);
+                    mobile.setRam(Integer.parseInt(data[4]));
+                    mobile.setMemory(Integer.parseInt(data[5]));
+                    mobile.setFrontCamera(Integer.parseInt(data[6]));
+                    mobile.setMainCamera(Integer.parseInt(data[7]));
+                    mobile.setBatteryCapacity(Integer.parseInt(data[8]));
+                    mobile.setAnnouncementYear(Integer.parseInt(data[9]));
                     Screen screen = new Screen();
                     screen.setWidth(Integer.parseInt(data[10]));
                     screen.setHeight(Integer.parseInt(data[11]));
-                    mobiles[i].setScreen(screen);
-                    mobiles[i].setPrice(Integer.parseInt(data[12]));
+                    mobile.setScreen(screen);
+                    mobile.setPrice(Integer.parseInt(data[12]));
 
-                    i++;
+                    mobiles.add(mobile);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return mobiles;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public Mobile[] getByColor(String color) {
+    public List<Mobile> getByColor(String color) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(data[2].equals(color)) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<Mobile> mobiles = new ArrayList<>();
 
-            Mobile[] mobiles = new Mobile[n];
-            int i = 0;
 
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(data[2].equals(color)) {
-                    mobiles[i] = new Mobile();
-                    mobiles[i].setModel(data[1]);
-                    mobiles[i].setColor(data[2]);
-                    mobiles[i].setOs(data[3]);
-                    mobiles[i].setRam(Integer.parseInt(data[4]));
-                    mobiles[i].setMemory(Integer.parseInt(data[5]));
-                    mobiles[i].setFrontCamera(Integer.parseInt(data[6]));
-                    mobiles[i].setMainCamera(Integer.parseInt(data[7]));
-                    mobiles[i].setBatteryCapacity(Integer.parseInt(data[8]));
-                    mobiles[i].setAnnouncementYear(Integer.parseInt(data[9]));
+                    Mobile mobile = new Mobile();
+                    mobile.setModel(data[1]);
+                    mobile.setColor(data[2]);
+                    mobile.setOs(data[3]);
+                    mobile.setRam(Integer.parseInt(data[4]));
+                    mobile.setMemory(Integer.parseInt(data[5]));
+                    mobile.setFrontCamera(Integer.parseInt(data[6]));
+                    mobile.setMainCamera(Integer.parseInt(data[7]));
+                    mobile.setBatteryCapacity(Integer.parseInt(data[8]));
+                    mobile.setAnnouncementYear(Integer.parseInt(data[9]));
                     Screen screen = new Screen();
                     screen.setWidth(Integer.parseInt(data[10]));
                     screen.setHeight(Integer.parseInt(data[11]));
-                    mobiles[i].setScreen(screen);
-                    mobiles[i].setPrice(Integer.parseInt(data[12]));
+                    mobile.setScreen(screen);
+                    mobile.setPrice(Integer.parseInt(data[12]));
 
-                    i++;
+                    mobiles.add(mobile);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return mobiles;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public Mobile[] getByOs(String os) {
+    public List<Mobile> getByOs(String os) {
         try {
-            BufferedReader reader1 = new BufferedReader(new FileReader(path));
-            BufferedReader reader2 = new BufferedReader(new FileReader(path));
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
             String s;
-            int n = 0;
 
-            while((s = reader1.readLine()) != null) {
-                String[] data = s.split(",");
-                if(data[3].equals(os)) {
-                    n++;
-                }
-            }
-            reader1.close();
+            List<Mobile> mobiles = new ArrayList<>();
 
-            Mobile[] mobiles = new Mobile[n];
-            int i = 0;
-
-            while ((s = reader2.readLine()) != null) {
+            while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(data[3].equals(os)) {
-                    mobiles[i] = new Mobile();
-                    mobiles[i].setModel(data[1]);
-                    mobiles[i].setColor(data[2]);
-                    mobiles[i].setOs(data[3]);
-                    mobiles[i].setRam(Integer.parseInt(data[4]));
-                    mobiles[i].setMemory(Integer.parseInt(data[5]));
-                    mobiles[i].setFrontCamera(Integer.parseInt(data[6]));
-                    mobiles[i].setMainCamera(Integer.parseInt(data[7]));
-                    mobiles[i].setBatteryCapacity(Integer.parseInt(data[8]));
-                    mobiles[i].setAnnouncementYear(Integer.parseInt(data[9]));
+                    Mobile mobile = new Mobile();
+                    mobile.setModel(data[1]);
+                    mobile.setColor(data[2]);
+                    mobile.setOs(data[3]);
+                    mobile.setRam(Integer.parseInt(data[4]));
+                    mobile.setMemory(Integer.parseInt(data[5]));
+                    mobile.setFrontCamera(Integer.parseInt(data[6]));
+                    mobile.setMainCamera(Integer.parseInt(data[7]));
+                    mobile.setBatteryCapacity(Integer.parseInt(data[8]));
+                    mobile.setAnnouncementYear(Integer.parseInt(data[9]));
                     Screen screen = new Screen();
                     screen.setWidth(Integer.parseInt(data[10]));
                     screen.setHeight(Integer.parseInt(data[11]));
-                    mobiles[i].setScreen(screen);
-                    mobiles[i].setPrice(Integer.parseInt(data[12]));
+                    mobile.setScreen(screen);
+                    mobile.setPrice(Integer.parseInt(data[12]));
 
-                    i++;
+                    mobiles.add(mobile);
                 }
             }
 
 
-            reader2.close();
+            reader.close();
 
             return mobiles;
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new ArrayList<>();
         }
     }
 
-    public void print(Mobile[] mobiles) {
+    public void print(List<Mobile> mobiles) {
         for(Mobile mobile : mobiles) {
             System.out.println(mobile);
         }
     }
 
-    @Override
+    /*@Override
     public void audiCall() {
         System.out.println("Audio call with mobile");
     }
@@ -505,6 +453,6 @@ public class MobileService implements MusicDevice, GamingDevice, CallingDevice, 
     @Override
     public void takeVideo() {
         System.out.println("Take a video with mobile");
-    }
+    }*/
 
 }
