@@ -1,48 +1,48 @@
 package homework_4.model;
 
-import homework_4.model.interfaces.ShootingDevice;
+import homework_4.abstractClasses.DeviceWithoutScreen;
 
 public class Camera extends DeviceWithoutScreen {
-    private int pixel;
-    private int memory;
-    private int weight;
-    private boolean hasBluetooth;
+    private Integer pixel;
+    private Integer memory;
+    private Integer weight;
+    private Boolean hasBluetooth;
 
-    public int getPixel() {
+    public Integer getPixel() {
         return pixel;
     }
 
-    public void setPixel(int pixel) {
+    public void setPixel(Integer pixel) {
         if(pixel > 0) {
             this.pixel = pixel;
         }
     }
 
-    public int getMemory() {
+    public Integer getMemory() {
         return memory;
     }
 
-    public void setMemory(int memory) {
+    public void setMemory(Integer memory) {
         if(memory > 0) {
             this.memory = memory;
         }
     }
 
-    public int getWeight() {
+    public Integer getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(Integer weight) {
         if(weight > 0) {
             this.weight = weight;
         }
     }
 
-    public boolean hasBluetooth() {
+    public Boolean hasBluetooth() {
         return hasBluetooth;
     }
 
-    public void setBluetooth(boolean hasBluetooth) {
+    public void setBluetooth(Boolean hasBluetooth) {
         this.hasBluetooth = hasBluetooth;
     }
 

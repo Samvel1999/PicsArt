@@ -1,16 +1,16 @@
 package homework_4.model;
 
-import homework_4.model.interfaces.CleaningDevice;
+import homework_4.abstractClasses.DeviceWithoutScreen;
 
 public class VacuumCleaner extends DeviceWithoutScreen {
-    private double weight;
+    private Double weight;
     private String filter;
 
-    public double getWeight() {
+    public Double getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(Double weight) {
         if(weight > 0) {
             this.weight = weight;
         }

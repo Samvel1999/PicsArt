@@ -1,10 +1,10 @@
-1,LG,Black,Is smart,2000,1500,2019,205000
-2,Samsung,Black,Is not smart,3000,1500,2020,305000
-3,LG,Black,Is smart,2000,1500,2019,205000
-4,Samsung,Black,Is not smart,3000,1500,2020,305000
-5,LG,Black,Is smart,2000,1500,2019,205000
-6,Samsung,Black,Is not smart,3000,1500,2020,305000
-7,Lenovo,Black,Is smart,2000,1500,2019,255000
-8,Samsung,Black,Is not smart,3000,1500,2020,355000
-9,LG,Black,Is smart,2000,1500,2019,205000
-10,Samsung,Black,Is not smart,3000,1500,2020,355000
+0,LG,Black,Is smart,2000,1500,2019,205000
+1,Samsung,Black,Is not smart,3000,1500,2020,305000
+2,LG,Black,Is smart,2000,1500,2019,205000
+3,Samsung,Black,Is not smart,3000,1500,2020,305000
+4,LG,Black,Is smart,2000,1500,2019,205000
+5,Samsung,Black,Is not smart,3000,1500,2020,305000
+6,Lenovo,Black,Is smart,2000,1500,2019,255000
+7,Samsung,Black,Is not smart,3000,1500,2020,355000
+8,LG,Black,Is smart,2000,1500,2019,205000
+9,Samsung,Black,Is not smart,3000,1500,2020,355000

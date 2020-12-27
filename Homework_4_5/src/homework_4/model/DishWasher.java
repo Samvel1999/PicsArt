@@ -1,17 +1,19 @@
 package homework_4.model;
 
+import homework_4.abstractClasses.DeviceWithoutScreen;
+
 public class DishWasher extends DeviceWithoutScreen {
-    private int capacity;
+    private Integer capacity;
     private String manufacturerCountry;
-    private double width;
-    private double height;
-    private double depth;
+    private Double width;
+    private Double height;
+    private Double depth;
 
     public int getCapacity() {
         return capacity;
     }
 
-    public void setCapacity(int capacity) {
+    public void setCapacity(Integer capacity) {
         if(capacity > 0) {
             this.capacity = capacity;
         }
@@ -25,11 +27,11 @@ public class DishWasher extends DeviceWithoutScreen {
         this.manufacturerCountry = manufacturerCountry;
     }
 
-    public double getWidth() {
+    public Double getWidth() {
         return width;
     }
 
-    public void setWidth(double width) {
+    public void setWidth(Double width) {
         if(width > 0) {
             this.width = width;
         }
@@ -38,11 +40,11 @@ public class DishWasher extends DeviceWithoutScreen {
         }
     }
 
-    public double getHeight() {
+    public Double getHeight() {
         return height;
     }
 
-    public void setHeight(double height) {
+    public void setHeight(Double height) {
         if(height > 0) {
             this.height = height;
         }
@@ -51,11 +53,11 @@ public class DishWasher extends DeviceWithoutScreen {
         }
     }
 
-    public double getDepth() {
+    public Double getDepth() {
         return depth;
     }
 
-    public void setDepth(double depth) {
+    public void setDepth(Double depth) {
         if(depth > 0) {
             this.depth = depth;
         }

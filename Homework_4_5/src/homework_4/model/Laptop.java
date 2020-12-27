@@ -1,17 +1,19 @@
 package homework_4.model;
 
+import homework_4.abstractClasses.DeviceWithScreen;
+
 public class Laptop extends DeviceWithScreen {
 
-    private int hardDiscCapacity;
-    private int camera;
-    private int ram;
+    private Integer hardDiscCapacity;
+    private Integer camera;
+    private Integer ram;
     private String cpu;
 
-    public int getHardDiscCapacity() {
+    public Integer getHardDiscCapacity() {
         return hardDiscCapacity;
     }
 
-    public void setHardDiscCapacity(int hardDiscCapacity) {
+    public void setHardDiscCapacity(Integer hardDiscCapacity) {
         if(hardDiscCapacity > 0) {
             this.hardDiscCapacity = hardDiscCapacity;
         }
@@ -20,11 +22,11 @@ public class Laptop extends DeviceWithScreen {
         }
     }
 
-    public int getCamera() {
+    public Integer getCamera() {
         return camera;
     }
 
-    public void setCamera(int camera) {
+    public void setCamera(Integer camera) {
         if(camera > 0) {
             this.camera = camera;
         }
@@ -33,11 +35,11 @@ public class Laptop extends DeviceWithScreen {
         }
     }
 
-    public int getRam() {
+    public Integer getRam() {
         return ram;
     }
 
-    public void setRam(int ram) {
+    public void setRam(Integer ram) {
         if(ram > 0) {
             this.ram = ram;
         }
@@ -53,7 +55,6 @@ public class Laptop extends DeviceWithScreen {
     public void setCpu(String cpu) {
         this.cpu = cpu;
     }
-
 
     @Override
     public String toString() {

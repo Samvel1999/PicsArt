@@ -1,18 +1,15 @@
 package homework_4.model;
 
-import homework_4.model.interfaces.CallingDevice;
-import homework_4.model.interfaces.GamingDevice;
-import homework_4.model.interfaces.MusicDevice;
-import homework_4.model.interfaces.ShootingDevice;
+import homework_4.abstractClasses.DeviceWithScreen;
 
 public class Mobile extends DeviceWithScreen {
 
     private String os;
-    private int ram;
-    private int memory;
-    private int frontCamera;
-    private int mainCamera;
-    private int batteryCapacity;
+    private Integer ram;
+    private Integer memory;
+    private Integer frontCamera;
+    private Integer mainCamera;
+    private Integer batteryCapacity;
 
     public String getOs() {
         return os;
@@ -22,11 +19,11 @@ public class Mobile extends DeviceWithScreen {
         this.os = os;
     }
 
-    public int getRam() {
+    public Integer getRam() {
         return ram;
     }
 
-    public void setRam(int ram) {
+    public void setRam(Integer ram) {
         if(ram > 0) {
             this.ram = ram;
         }
@@ -35,11 +32,11 @@ public class Mobile extends DeviceWithScreen {
         }
     }
 
-    public int getMemory() {
+    public Integer getMemory() {
         return memory;
     }
 
-    public void setMemory(int memory) {
+    public void setMemory(Integer memory) {
         if(memory > 0) {
             this.memory = memory;
         }
@@ -48,11 +45,11 @@ public class Mobile extends DeviceWithScreen {
         }
     }
 
-    public int getFrontCamera() {
+    public Integer getFrontCamera() {
         return frontCamera;
     }
 
-    public void setFrontCamera(int frontCamera) {
+    public void setFrontCamera(Integer frontCamera) {
         if(frontCamera > 0) {
             this.frontCamera = frontCamera;
         }
@@ -61,11 +58,11 @@ public class Mobile extends DeviceWithScreen {
         }
     }
 
-    public int getMainCamera() {
+    public Integer getMainCamera() {
         return mainCamera;
     }
 
-    public void setMainCamera(int mainCamera) {
+    public void setMainCamera(Integer mainCamera) {
         if(mainCamera > 0) {
             this.mainCamera = mainCamera;
         }
@@ -74,11 +71,11 @@ public class Mobile extends DeviceWithScreen {
         }
     }
 
-    public int getBatteryCapacity() {
+    public Integer getBatteryCapacity() {
         return batteryCapacity;
     }
 
-    public void setBatteryCapacity(int batteryCapacity) {
+    public void setBatteryCapacity(Integer batteryCapacity) {
         if(batteryCapacity > 0) {
             this.batteryCapacity = batteryCapacity;
         }

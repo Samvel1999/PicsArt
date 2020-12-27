@@ -1,5 +1,6 @@
 package homework_4.service;
 
+import homework_4.abstractClasses.AbstractDeviceService;
 import homework_4.model.Printer;
 
 import java.io.*;
@@ -7,12 +8,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class PrinterService {
+public class PrinterService extends AbstractDeviceService<Printer> {
 
     private static final String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\Printer.txt";
     private static int id = 0;
 
-    private Printer create() {
+    private void deleteAllInfoFromFile() {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+            writer.write("");
+        } catch (IOException e) {
+            System.out.println("File is not found.");
+        }
+
+    }
+
+    @Override
+    public Printer create() {
         Scanner scanner = new Scanner(System.in);
         Printer printer = new Printer();
 
@@ -37,40 +49,7 @@ public class PrinterService {
         return printer;
     }
 
-    public void save() {
-        try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter(path, true));
-            String data;
-            Printer printer = create();
-            String colored = printer.isColored()? "colored" : "non-colored";
-
-            if(new File(path).length() == 0) {
-                id++;
-                data = id + "," + printer.getModel() + "," + printer.getColor() + ","
-                            + printer.getMaxNumberOfLists() + "," + colored + ","
-                            + printer.getAnnouncementYear() + "," + printer.getPrice();
-            }
-            else {
-                BufferedReader reader = new BufferedReader(new FileReader(path));
-                String s;
-                while ((s = reader.readLine()) != null) {
-                    String[] info = s.split(",");
-
-                    id = Integer.parseInt(info[0]);
-                }
-                id++;
-                data = "\n" + id + "," + printer.getModel() + "," + printer.getColor() + ","
-                        + printer.getMaxNumberOfLists() + "," + colored + ","
-                        + printer.getAnnouncementYear() + "," + printer.getPrice();
-            }
-            writer.write(data);
-
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("File is not found.");
-        }
-    }
-
+    @Override
     public List<Printer> getAll() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
@@ -83,6 +62,7 @@ public class PrinterService {
                 String[] data = s.split(",");
 
                 Printer printer = new Printer();
+                printer.setId(Integer.parseInt(data[0]));
                 printer.setModel(data[1]);
                 printer.setColor(data[2]);
                 printer.setMaxNumberOfLists(Integer.parseInt(data[3]));
@@ -103,18 +83,19 @@ public class PrinterService {
         }
     }
 
-    public Printer getById(int id) {
+    @Override
+    public Printer getById(Integer id) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
             String s;
             Printer printer = new Printer();
-            int i = 0;
 
             while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(Integer.parseInt(data[0]) == id) {
 
+                    printer.setId(id);
                     printer.setModel(data[1]);
                     printer.setColor(data[2]);
                     printer.setMaxNumberOfLists(Integer.parseInt(data[3]));
@@ -137,42 +118,7 @@ public class PrinterService {
 
     }
 
-    public List<Printer> getByPrice(int price) {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(path));
-
-            String s;
-
-            List<Printer> printers = new ArrayList<>();
-
-
-            while ((s = reader.readLine()) != null) {
-                String[] data = s.split(",");
-
-                if(Integer.parseInt(data[6]) == price) {
-                    Printer printer = new Printer();
-                    printer.setModel(data[1]);
-                    printer.setColor(data[2]);
-                    printer.setMaxNumberOfLists(Integer.parseInt(data[3]));
-                    printer.setColored(data[4].equals("colored"));
-                    printer.setAnnouncementYear(Integer.parseInt(data[5]));
-                    printer.setPrice(Integer.parseInt(data[6]));
-
-                    printers.add(printer);
-                }
-            }
-
-
-            reader.close();
-
-            return printers;
-        }
-        catch (IOException e) {
-            System.out.println("File is not found.");
-            return new ArrayList<>();
-        }
-    }
-
+    @Override
     public List<Printer> getByModel(String model) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
@@ -187,6 +133,7 @@ public class PrinterService {
 
                 if(data[1].equals(model)) {
                     Printer printer = new Printer();
+                    printer.setId(Integer.parseInt(data[0]));
                     printer.setModel(data[1]);
                     printer.setColor(data[2]);
                     printer.setMaxNumberOfLists(Integer.parseInt(data[3]));
@@ -209,6 +156,7 @@ public class PrinterService {
         }
     }
 
+    @Override
     public List<Printer> getByColor(String color) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
@@ -222,6 +170,7 @@ public class PrinterService {
 
                 if(data[2].equals(color)) {
                     Printer printer = new Printer();
+                    printer.setId(Integer.parseInt(data[0]));
                     printer.setModel(data[1]);
                     printer.setColor(data[2]);
                     printer.setMaxNumberOfLists(Integer.parseInt(data[3]));
@@ -244,7 +193,8 @@ public class PrinterService {
         }
     }
 
-    public List<Printer> getByColored(boolean isColored) {
+    @Override
+    public List<Printer> getByPrice(Integer price) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
 
@@ -256,8 +206,48 @@ public class PrinterService {
             while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
-                if(Boolean.parseBoolean(data[4]) == isColored) {
+                if(Integer.parseInt(data[6]) == price) {
                     Printer printer = new Printer();
+                    printer.setId(Integer.parseInt(data[0]));
+                    printer.setModel(data[1]);
+                    printer.setColor(data[2]);
+                    printer.setMaxNumberOfLists(Integer.parseInt(data[3]));
+                    printer.setColored(data[4].equals("colored"));
+                    printer.setAnnouncementYear(Integer.parseInt(data[5]));
+                    printer.setPrice(Integer.parseInt(data[6]));
+
+                    printers.add(printer);
+                }
+            }
+
+
+            reader.close();
+
+            return printers;
+        }
+        catch (IOException e) {
+            System.out.println("File is not found.");
+            return new ArrayList<>();
+        }
+    }
+
+    public List<Printer> getByColored(Boolean isColored) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
+            String s;
+
+            List<Printer> printers = new ArrayList<>();
+
+
+            while ((s = reader.readLine()) != null) {
+                String[] data = s.split(",");
+
+
+                if((data[4].equals("colored") && isColored) ||
+                        (data[4].equals("non-colored") && !isColored)) {
+                    Printer printer = new Printer();
+                    printer.setId(Integer.parseInt(data[0]));
                     printer.setModel(data[1]);
                     printer.setColor(data[2]);
                     printer.setMaxNumberOfLists(Integer.parseInt(data[3]));
@@ -280,18 +270,97 @@ public class PrinterService {
         }
     }
 
-    public void print(List<Printer> printers) {
-        for(Printer printer : printers) {
-            System.out.println(printer);
+    @Override
+    public void save() {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path, true));
+            String data;
+            Printer printer = create();
+            String colored = printer.isColored()? "colored" : "non-colored";
+
+            if(new File(path).length() == 0) {
+                data = id + "," + printer.getModel() + "," + printer.getColor() + ","
+                        + printer.getMaxNumberOfLists() + "," + colored + ","
+                        + printer.getAnnouncementYear() + "," + printer.getPrice();
+            }
+            else {
+                BufferedReader reader = new BufferedReader(new FileReader(path));
+                String s;
+                while ((s = reader.readLine()) != null) {
+                    String[] info = s.split(",");
+
+                    id = Integer.parseInt(info[0]);
+                }
+                data = "\n" + id + "," + printer.getModel() + "," + printer.getColor() + ","
+                        + printer.getMaxNumberOfLists() + "," + colored + ","
+                        + printer.getAnnouncementYear() + "," + printer.getPrice();
+            }
+            id++;
+            writer.write(data);
+
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("File is not found.");
         }
     }
 
-    /*public void print(int numberOfSamples) {
-        System.out.println("Print " + numberOfSamples + " sample");
+    @Override
+    public void save(Printer printer) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path, true));
+            String data;
+            String colored = printer.isColored()? "colored" : "non-colored";
+
+            if(new File(path).length() == 0) {
+                data = id + "," + printer.getModel() + "," + printer.getColor() + ","
+                        + printer.getMaxNumberOfLists() + "," + colored + ","
+                        + printer.getAnnouncementYear() + "," + printer.getPrice();
+            }
+            else {
+                BufferedReader reader = new BufferedReader(new FileReader(path));
+                String s;
+                while ((s = reader.readLine()) != null) {
+                    String[] info = s.split(",");
+
+                    id = Integer.parseInt(info[0]);
+                }
+                data = "\n" + id + "," + printer.getModel() + "," + printer.getColor() + ","
+                        + printer.getMaxNumberOfLists() + "," + colored + ","
+                        + printer.getAnnouncementYear() + "," + printer.getPrice();
+            }
+            id++;
+            writer.write(data);
+
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("File is not found.");
+        }
     }
 
-    public void xerox(int numberOfSamples) {
-        System.out.println("Xerox " + numberOfSamples + " sample");
-    }*/
+    @Override
+    public void update(Integer id, Printer newPrinter) {
+        List<Printer> printers = getAll();
+        deleteAllInfoFromFile();
+        for(Printer printer : printers) {
+            if(printer.getId().equals(id)) {
+                printer = newPrinter;
+            }
+            save(printer);
+        }
+    }
 
+    @Override
+    public void delete(Integer id) {
+        try {
+            List<Printer> printers = getAll();
+            deleteAllInfoFromFile();
+            printers.remove(id.intValue());
+
+            for (Printer printer : printers) {
+                save(printer);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Wrong Index");
+        }
+    }
 }

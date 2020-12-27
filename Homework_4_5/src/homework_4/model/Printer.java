@@ -1,5 +1,7 @@
 package homework_4.model;
 
+import homework_4.abstractClasses.DeviceWithoutScreen;
+
 public class Printer extends DeviceWithoutScreen {
     private int maxNumberOfLists;
     private boolean isColored;

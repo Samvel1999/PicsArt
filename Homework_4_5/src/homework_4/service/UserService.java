@@ -1,11 +1,11 @@
 package homework_4.service;
 
+import homework_4.enums.Language;
 import homework_4.model.*;
-import homework_4.model.Dictionary;
+import homework_4.otherClasses.Dictionary;
+import homework_4.otherClasses.MD5Encoder;
 
 import java.io.*;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 public class UserService {
@@ -38,7 +38,7 @@ public class UserService {
     private User create(Language language) {
         Scanner scanner = new Scanner(System.in);
         User user = new User();
-        Map<Language, HashMap<String, String>> myDictionary = new Dictionary().translate();
+        Map<Language, HashMap<String, String>> myDictionary = Dictionary.translate();
 
         System.out.println(myDictionary.get(language).get("FullName: "));
         user.setFullName(scanner.nextLine());
@@ -63,9 +63,10 @@ public class UserService {
             String hashedPassword = new MD5Encoder().md5DigestJavaHexString(user.getPassword());
 
             if(new File(path).length() == 0) {
-                id++;
+
                 data = id + "," + user.getFullName() + "," + user.getUsername() + "," + user.getEmail() + ","
                         + hashedPassword;
+                id++;
             }
             else {
                 BufferedReader reader = new BufferedReader(new FileReader(path));
@@ -75,15 +76,16 @@ public class UserService {
 
                     id = Integer.parseInt(info[0]);
                 }
-                id++;
+
                 data = "\n" + id + "," + user.getFullName() + "," + user.getUsername()
                         + "," + user.getEmail() + "," + hashedPassword;
+                id++;
             }
             writer.write(data);
 
             writer.close();
 
-            Map<Language, HashMap<String, String>> myDictionary = new Dictionary().translate();
+            Map<Language, HashMap<String, String>> myDictionary = Dictionary.translate();
 
             System.out.println(myDictionary.get(language).get("Login"));
             login(language);
@@ -93,7 +95,7 @@ public class UserService {
     }
 
     public void login(Language language) {
-        Map<Language, HashMap<String, String>> myDictionary = new Dictionary().translate();
+        Map<Language, HashMap<String, String>> myDictionary = Dictionary.translate();
 
         Scanner scanner = new Scanner(System.in);
         System.out.println(myDictionary.get(language).get("Username: "));

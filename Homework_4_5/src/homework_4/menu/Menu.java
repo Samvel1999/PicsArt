@@ -1,6 +1,7 @@
 package homework_4.menu;
 
-import homework_4.model.*;
+import homework_4.enums.Language;
+import homework_4.otherClasses.Dictionary;
 import homework_4.service.*;
 
 import java.util.HashMap;
@@ -10,7 +11,7 @@ import java.util.Scanner;
 public class Menu {
     public void startMenu() {
         Scanner scanner = new Scanner(System.in);
-        Map<Language, HashMap<String, String>> dictionary =  new Dictionary().translate();
+        Map<Language, HashMap<String, String>> dictionary =  Dictionary.translate();
 
         System.out.println("Հայերենի համար սեղմեք 1:");
         System.out.println("For english press  2.");

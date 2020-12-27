@@ -1,6 +1,6 @@
-1,Berg,Blue,6.2,Hepa 13,2017,120000
-2,Panasonic,Black,5.0,Hepa,2018,75600
-3,Candy,Red,4.4,Microfilter,2019,38000
-4,Berg,Black,5.2,Hepa 13,2019,150000
-5,Panasonic,Black,5.0,Hepa,2018,75600
-6,Candy,White,5.4,Microfilter,2019,150000
+0,Berg,Blue,6.2,Hepa 13,2017,120000
+1,Panasonic,Black,5.0,Hepa,2018,75600
+2,Candy,Red,4.4,Microfilter,2019,38000
+3,Berg,Black,5.2,Hepa 13,2019,150000
+4,Panasonic,Black,5.0,Hepa,2018,75600
+5,Candy,White,5.4,Microfilter,2019,150000

@@ -1,20 +1,29 @@
 package homework_4.service;
 
+import homework_4.abstractClasses.AbstractDeviceService;
 import homework_4.model.Laptop;
 import homework_4.model.Screen;
-import homework_4.model.interfaces.CallingDevice;
-import homework_4.model.interfaces.GamingDevice;
-import homework_4.model.interfaces.MusicDevice;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class LaptopService /*implements MusicDevice, GamingDevice, CallingDevice*/ {
+public class LaptopService extends AbstractDeviceService<Laptop> {
     private static final String path = "C:\\Users\\Samvel\\Desktop\\PicsArt\\Homework_4_5\\DataBase\\Laptop.txt";
     private static int id = 0;
 
+    private void deleteAllInfoFromFile() {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+            writer.write("");
+        } catch (IOException e) {
+            System.out.println("File is not found.");
+        }
+
+    }
+
+    @Override
     public Laptop create() {
         Scanner scanner = new Scanner(System.in);
         Laptop laptop = new Laptop();
@@ -52,41 +61,7 @@ public class LaptopService /*implements MusicDevice, GamingDevice, CallingDevice
         return laptop;
     }
 
-    public void save() {
-        try {
-            Laptop laptop = create();
-            BufferedWriter writer = new BufferedWriter(new FileWriter(path, true));
-            String data;
-
-            if(new File(path).length() == 0) {
-                id++;
-                data = id + "," + laptop.getModel() + "," + laptop.getColor() + "," + laptop.getCpu() + ","
-                        + laptop.getHardDiscCapacity() + "," +laptop.getRam()+ ","+ laptop.getCamera() + ","
-                        + laptop.getScreen().getWidth() + "," + laptop.getScreen().getHeight() + ","
-                        + laptop.getAnnouncementYear() + "," + laptop.getPrice();
-            }
-            else {
-                BufferedReader reader = new BufferedReader(new FileReader(path));
-                String s;
-                while ((s = reader.readLine()) != null) {
-                    String[] info = s.split(",");
-
-                    id = Integer.parseInt(info[0]);
-                }
-                id++;
-                data = "\n" + id + "," + laptop.getModel() + "," + laptop.getColor() + "," + laptop.getCpu() + ","
-                        + laptop.getHardDiscCapacity() + "," +laptop.getRam()+ ","+ laptop.getCamera() + ","
-                        + laptop.getScreen().getWidth() + "," + laptop.getScreen().getHeight() + ","
-                        + laptop.getAnnouncementYear() + "," + laptop.getPrice();
-            }
-            writer.write(data);
-
-            writer.close();
-        } catch (IOException e) {
-            System.out.println("File is not found.");
-        }
-    }
-
+    @Override
     public List<Laptop> getAll() {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
@@ -99,6 +74,7 @@ public class LaptopService /*implements MusicDevice, GamingDevice, CallingDevice
                 String[] data = s.split(",");
 
                 Laptop laptop = new Laptop();
+                laptop.setId(Integer.parseInt(data[0]));
                 laptop.setModel(data[1]);
                 laptop.setColor(data[2]);
                 laptop.setCpu(data[3]);
@@ -124,18 +100,19 @@ public class LaptopService /*implements MusicDevice, GamingDevice, CallingDevice
         }
     }
 
-    public Laptop getById(int id) {
+    @Override
+    public Laptop getById(Integer id) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
             String s;
             Laptop laptop = new Laptop();
-            int i = 0;
 
             while ((s = reader.readLine()) != null) {
                 String[] data = s.split(",");
 
                 if(Integer.parseInt(data[0]) == id) {
 
+                    laptop.setId(id);
                     laptop.setModel(data[1]);
                     laptop.setColor(data[2]);
                     laptop.setCpu(data[3]);
@@ -161,46 +138,7 @@ public class LaptopService /*implements MusicDevice, GamingDevice, CallingDevice
         }
     }
 
-    public List<Laptop> getByPrice(int price) {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(path));
-
-            String s;
-
-            List<Laptop> laptops = new ArrayList<>();
-
-            while ((s = reader.readLine()) != null) {
-                String[] data = s.split(",");
-
-                if(Integer.parseInt(data[10]) == price) {
-                    Laptop laptop = new Laptop();
-                    laptop.setModel(data[1]);
-                    laptop.setColor(data[2]);
-                    laptop.setCpu(data[3]);
-                    laptop.setHardDiscCapacity(Integer.parseInt(data[4]));
-                    laptop.setRam(Integer.parseInt(data[5]));
-                    laptop.setCamera(Integer.parseInt(data[6]));
-                    Screen screen = new Screen();
-                    screen.setWidth(Integer.parseInt(data[7]));
-                    screen.setHeight(Integer.parseInt(data[8]));
-                    laptop.setScreen(screen);
-                    laptop.setAnnouncementYear(Integer.parseInt(data[9]));
-                    laptop.setPrice(Integer.parseInt(data[10]));
-
-                    laptops.add(laptop);
-                }
-            }
-
-            reader.close();
-
-            return laptops;
-        }
-        catch (IOException e) {
-            System.out.println("File is not found.");
-            return new ArrayList<>();
-        }
-    }
-
+    @Override
     public List<Laptop> getByModel(String model) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
@@ -214,6 +152,7 @@ public class LaptopService /*implements MusicDevice, GamingDevice, CallingDevice
 
                 if(data[1].equals(model)) {
                     Laptop laptop = new Laptop();
+                    laptop.setId(Integer.parseInt(data[0]));
                     laptop.setModel(data[1]);
                     laptop.setColor(data[2]);
                     laptop.setCpu(data[3]);
@@ -241,6 +180,7 @@ public class LaptopService /*implements MusicDevice, GamingDevice, CallingDevice
         }
     }
 
+    @Override
     public List<Laptop> getByColor(String color) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
@@ -254,6 +194,7 @@ public class LaptopService /*implements MusicDevice, GamingDevice, CallingDevice
 
                 if(data[2].equals(color)) {
                     Laptop laptop = new Laptop();
+                    laptop.setId(Integer.parseInt(data[0]));
                     laptop.setModel(data[1]);
                     laptop.setColor(data[2]);
                     laptop.setCpu(data[3]);
@@ -281,7 +222,50 @@ public class LaptopService /*implements MusicDevice, GamingDevice, CallingDevice
         }
     }
 
-    public List<Laptop> getByRam(int ram) {
+    @Override
+    public List<Laptop> getByPrice(Integer price) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
+            String s;
+
+            List<Laptop> laptops = new ArrayList<>();
+
+            while ((s = reader.readLine()) != null) {
+                String[] data = s.split(",");
+
+                if(Integer.parseInt(data[10]) == price) {
+                    Laptop laptop = new Laptop();
+                    laptop.setId(Integer.parseInt(data[0]));
+                    laptop.setModel(data[1]);
+                    laptop.setColor(data[2]);
+                    laptop.setCpu(data[3]);
+                    laptop.setHardDiscCapacity(Integer.parseInt(data[4]));
+                    laptop.setRam(Integer.parseInt(data[5]));
+                    laptop.setCamera(Integer.parseInt(data[6]));
+                    Screen screen = new Screen();
+                    screen.setWidth(Integer.parseInt(data[7]));
+                    screen.setHeight(Integer.parseInt(data[8]));
+                    laptop.setScreen(screen);
+                    laptop.setAnnouncementYear(Integer.parseInt(data[9]));
+                    laptop.setPrice(Integer.parseInt(data[10]));
+
+                    laptops.add(laptop);
+                }
+            }
+
+            reader.close();
+
+            return laptops;
+        }
+        catch (IOException e) {
+            System.out.println("File is not found.");
+            return new ArrayList<>();
+        }
+    }
+
+
+    public List<Laptop> getByRam(Integer ram) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(path));
 
@@ -294,6 +278,7 @@ public class LaptopService /*implements MusicDevice, GamingDevice, CallingDevice
 
                 if(Integer.parseInt(data[5]) == ram) {
                     Laptop laptop = new Laptop();
+                    laptop.setId(Integer.parseInt(data[0]));
                     laptop.setModel(data[1]);
                     laptop.setColor(data[2]);
                     laptop.setCpu(data[3]);
@@ -321,52 +306,100 @@ public class LaptopService /*implements MusicDevice, GamingDevice, CallingDevice
         }
     }
 
-    public void print(List<Laptop> laptops) {
-        for(Laptop laptop : laptops) {
-            System.out.println(laptop);
+    @Override
+    public void save() {
+        try {
+            Laptop laptop = create();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path, true));
+            String data;
+
+            if(new File(path).length() == 0) {
+                data = id + "," + laptop.getModel() + "," + laptop.getColor() + "," + laptop.getCpu() + ","
+                        + laptop.getHardDiscCapacity() + "," +laptop.getRam()+ ","+ laptop.getCamera() + ","
+                        + laptop.getScreen().getWidth() + "," + laptop.getScreen().getHeight() + ","
+                        + laptop.getAnnouncementYear() + "," + laptop.getPrice();
+            }
+            else {
+                BufferedReader reader = new BufferedReader(new FileReader(path));
+                String s;
+                while ((s = reader.readLine()) != null) {
+                    String[] info = s.split(",");
+
+                    id = Integer.parseInt(info[0]);
+                }
+                data = "\n" + id + "," + laptop.getModel() + "," + laptop.getColor() + "," + laptop.getCpu() + ","
+                        + laptop.getHardDiscCapacity() + "," +laptop.getRam()+ ","+ laptop.getCamera() + ","
+                        + laptop.getScreen().getWidth() + "," + laptop.getScreen().getHeight() + ","
+                        + laptop.getAnnouncementYear() + "," + laptop.getPrice();
+            }
+            id++;
+            writer.write(data);
+
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("File is not found.");
         }
     }
 
-    /*@Override
-    public void listenToMusic() {
+    @Override
+    public void save(Laptop laptop) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path, true));
+            String data;
 
-        System.out.println("Listen to music with Laptop");
+            if(new File(path).length() == 0) {
+                data = id + "," + laptop.getModel() + "," + laptop.getColor() + "," + laptop.getCpu() + ","
+                        + laptop.getHardDiscCapacity() + "," +laptop.getRam()+ ","+ laptop.getCamera() + ","
+                        + laptop.getScreen().getWidth() + "," + laptop.getScreen().getHeight() + ","
+                        + laptop.getAnnouncementYear() + "," + laptop.getPrice();
+            }
+            else {
+                BufferedReader reader = new BufferedReader(new FileReader(path));
+                String s;
+                while ((s = reader.readLine()) != null) {
+                    String[] info = s.split(",");
+
+                    id = Integer.parseInt(info[0]);
+                }
+                data = "\n" + id + "," + laptop.getModel() + "," + laptop.getColor() + "," + laptop.getCpu() + ","
+                        + laptop.getHardDiscCapacity() + "," +laptop.getRam()+ ","+ laptop.getCamera() + ","
+                        + laptop.getScreen().getWidth() + "," + laptop.getScreen().getHeight() + ","
+                        + laptop.getAnnouncementYear() + "," + laptop.getPrice();
+            }
+            id++;
+            writer.write(data);
+
+            writer.close();
+        } catch (IOException e) {
+            System.out.println("File is not found.");
+        }
     }
 
     @Override
-    public void audiCall() {
-
-        System.out.println("Audio call with laptop");
+    public void update(Integer id, Laptop newLaptop) {
+        List<Laptop> laptops = getAll();
+        deleteAllInfoFromFile();
+        for(Laptop laptop : laptops) {
+            if(laptop.getId().equals(id)) {
+                laptop = newLaptop;
+            }
+            save(laptop);
+        }
     }
 
     @Override
-    public void videoCall() {
-        System.out.println("Video call with laptop");
+    public void delete(Integer id) {
+        try {
+            List<Laptop> laptops = getAll();
+            deleteAllInfoFromFile();
+            laptops.remove(id.intValue());
+
+            for (Laptop laptop : laptops) {
+                save(laptop);
+            }
+        } catch (IndexOutOfBoundsException e) {
+            System.out.println("Wrong Index");
+        }
     }
 
-    @Override
-    public void play() {
-        System.out.println("Playing game with laptop");
-    }
-
-    @Override
-    public void downloadGame() {
-        System.out.println("Download game into laptop");
-    }
-
-    @Override
-    public void deleteGame() {
-        System.out.println("Delete game from laptop");
-    }
-
-    @Override
-    public void connectToTheInternet() {
-
-        System.out.println("Laptop is connected to the Internet");
-    }
-
-    @Override
-    public void disconnectFromTheInternet() {
-        System.out.println("Laptop is disconnected from the Internet");
-    }*/
 }

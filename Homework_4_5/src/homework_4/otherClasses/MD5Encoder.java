@@ -1,4 +1,4 @@
-package homework_4.model;
+package homework_4.otherClasses;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

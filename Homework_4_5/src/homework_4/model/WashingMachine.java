@@ -1,37 +1,39 @@
 package homework_4.model;
 
+import homework_4.abstractClasses.DeviceWithoutScreen;
+
 public class WashingMachine extends DeviceWithoutScreen {
-    private int washingCapacity;
-    private int spinSpeed;
-    private int numberOfPrograms;
+    private Integer washingCapacity;
+    private Integer spinSpeed;
+    private Integer numberOfPrograms;
     private String energyClass;
     private String manufacturerCountry;
 
-    public int getWashingCapacity() {
+    public Integer getWashingCapacity() {
         return washingCapacity;
     }
 
-    public void setWashingCapacity(int washingCapacity) {
+    public void setWashingCapacity(Integer washingCapacity) {
         if(washingCapacity > 0) {
             this.washingCapacity = washingCapacity;
         }
     }
 
-    public int getSpinSpeed() {
+    public Integer getSpinSpeed() {
         return spinSpeed;
     }
 
-    public void setSpinSpeed(int spinSpeed) {
+    public void setSpinSpeed(Integer spinSpeed) {
         if(spinSpeed > 0) {
             this.spinSpeed = spinSpeed;
         }
     }
 
-    public int getNumberOfPrograms() {
+    public Integer getNumberOfPrograms() {
         return numberOfPrograms;
     }
 
-    public void setNumberOfPrograms(int numberOfPrograms) {
+    public void setNumberOfPrograms(Integer numberOfPrograms) {
         if(numberOfPrograms > 0) {
             this.numberOfPrograms = numberOfPrograms;
         }

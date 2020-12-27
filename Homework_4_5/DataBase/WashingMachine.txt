@@ -1,6 +1,6 @@
-1,Berg,Grey,15,1000,6,A++,USA,2018,179000
-2,Bompani,White,12,1500,18,B++,China,2020,250000
-3,Samsung,Black,7,1200,14,A,Russia,2017,219000
-4,Berg,Grey,15,1000,6,A++,USA,2018,179000
-5,Bompani,White,12,1500,18,B++,Italy,2020,250000
-6,Ardo,Black,8,1300,13,C,Italy,2018,179000
+0,Berg,Grey,15,1000,6,A++,USA,2018,179000
+1,Bompani,White,12,1500,18,B++,China,2020,250000
+2,Samsung,Black,7,1200,14,A,Russia,2017,219000
+3,Berg,Grey,15,1000,6,A++,USA,2018,179000
+4,Bompani,White,12,1500,18,B++,Italy,2020,250000
+5,Ardo,Black,8,1300,13,C,Italy,2018,179000

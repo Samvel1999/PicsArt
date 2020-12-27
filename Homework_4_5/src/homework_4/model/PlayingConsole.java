@@ -1,25 +1,29 @@
 package homework_4.model;
 
-import homework_4.model.interfaces.GamingDevice;
+import homework_4.abstractClasses.DeviceWithoutScreen;
 
 public class PlayingConsole extends DeviceWithoutScreen {
-    private int memory;
-    private int ram;
+    private Integer memory;
+    private Integer ram;
 
-    public int getMemory() {
+    public Integer getMemory() {
         return memory;
     }
 
-    public void setMemory(int memory) {
-        this.memory = memory;
+    public void setMemory(Integer memory) {
+        if(memory > 0) {
+            this.memory = memory;
+        }
     }
 
-    public int getRam() {
+    public Integer getRam() {
         return ram;
     }
 
-    public void setRam(int ram) {
-        this.ram = ram;
+    public void setRam(Integer ram) {
+        if(ram > 0) {
+            this.ram = ram;
+        }
     }
 
     @Override

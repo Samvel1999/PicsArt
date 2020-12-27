@@ -1,4 +1,7 @@
-package homework_4.model;
+package homework_4.abstractClasses;
+
+import homework_4.abstractClasses.Device;
+import homework_4.model.Screen;
 
 public abstract class DeviceWithScreen extends Device {
     private Screen screen = new Screen();
