@@ -28,7 +28,7 @@ public class PlayingConsole extends DeviceWithoutScreen {
 
     @Override
     public String toString() {
-        return super.toString() + "memory = " + memory + "\n"
-                + "ram = " + ram + "\n";
+        return super.toString() + "Memory: " + memory + "GB" + "\n"
+                + "RAM: " + ram + "GB" + "\n";
     }
 }

@@ -33,8 +33,8 @@ public class Screen {
 
     @Override
     public String toString() {
-        return "width=" + width + "\n"
-                + "height=" + height;
+        return "Width of screen: " + width + "cm" + "\n"
+                + "Height of screen: " + height + "cm";
 
     }
 }

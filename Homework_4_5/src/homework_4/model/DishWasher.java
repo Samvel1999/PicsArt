@@ -68,10 +68,10 @@ public class DishWasher extends DeviceWithoutScreen {
 
     @Override
     public String toString() {
-        return super.toString() + "capacity = " + capacity + "\n"
-                + "manufacturer country = " + manufacturerCountry + "\n"
-                + "width = " + width + "\n"
-                + "height = " + height + "\n"
-                + "depth = " + depth + "\n";
+        return super.toString() + "Capacity: " + capacity + "pieces" + "\n"
+                + "Manufacturer country: " + manufacturerCountry + "\n"
+                + "Width: " + width + "cm" + "\n"
+                + "Height: " + height + "cm" + "\n"
+                + "Depth: " + depth + "cm" + "\n";
     }
 }

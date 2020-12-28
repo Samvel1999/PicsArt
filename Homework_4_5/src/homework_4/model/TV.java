@@ -4,18 +4,19 @@ import homework_4.abstractClasses.DeviceWithScreen;
 
 public class TV extends DeviceWithScreen {
 
-    private Boolean smart;
+    private Boolean isSmart;
 
     public Boolean isSmart() {
-        return smart;
+        return isSmart;
     }
 
     public void setSmart(Boolean smart) {
-        this.smart = smart;
+        this.isSmart = smart;
     }
 
     @Override
     public String toString() {
-        return super.toString() + "smart=" + smart + "\n";
+        String smart = isSmart? "Yes" : "No";
+        return super.toString() + "Smart: " + smart + "\n";
     }
 }

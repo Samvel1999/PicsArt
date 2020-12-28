@@ -48,9 +48,11 @@ public class Camera extends DeviceWithoutScreen {
 
     @Override
     public String toString() {
-        return super.toString() + "pixel = " + pixel + "\n"
-                + "memory = " + memory + "\n"
-                + "weight = " + weight + "\n"
-                + "hasBluetooth = " + hasBluetooth + "\n";
+        String bluetooth = hasBluetooth ? "Yes" : "No";
+
+        return super.toString() + "Pixel: " + pixel + "MP" + "\n"
+                + "Memory: " + memory + "GB" + "\n"
+                + "Weight: " + weight + "g" + "\n"
+                + "Bluetooth: " + bluetooth + "\n";
     }
 }

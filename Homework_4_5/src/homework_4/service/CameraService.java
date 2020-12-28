@@ -207,7 +207,6 @@ public class CameraService extends AbstractDeviceService<Camera> {
         }
     }
 
-
     @Override
     public List<Camera> getByPrice(Integer price) {
         try {

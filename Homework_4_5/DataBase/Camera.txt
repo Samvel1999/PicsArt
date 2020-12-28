@@ -4,5 +4,5 @@
 3,Sony,Black,8,128,3,bluetooth,2016,150000
 4,Canon,Black,16,256,5,bluetooth,2020,205000
 5,Nikon,Red,12,128,3,bluetooth,2012,125000
-6,Sony,Blue,6,128,2,no bluetooth,2005,50000
-7,Samsung,Red,4,128,2,no bluetooth,2004,250
+6,Sony,Blue,6,128,2,no bluetooth,2012,50000
+7,Samsung,Red,4,128,2,no bluetooth,2015,250

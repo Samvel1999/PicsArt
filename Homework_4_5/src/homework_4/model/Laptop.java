@@ -58,9 +58,9 @@ public class Laptop extends DeviceWithScreen {
 
     @Override
     public String toString() {
-        return super.toString() + "hardDiscCapacity=" + hardDiscCapacity + "\n" +
-                "camera=" + camera + "\n" +
-                "ram=" + ram + "\n" +
-                "cpu=" + cpu +  "\n";
+        return super.toString() + "Hard disc capacity: " + hardDiscCapacity + "GB" + "\n" +
+                "Camera: " + camera + "MP" + "\n" +
+                "RAM: " + ram + "GB" + "\n" +
+                "CPU: " + cpu +  "\n";
     }
 }

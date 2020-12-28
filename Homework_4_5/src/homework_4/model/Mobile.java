@@ -86,12 +86,12 @@ public class Mobile extends DeviceWithScreen {
 
     @Override
     public String toString() {
-        return super.toString() + "os=" + os +  "\n" +
-                "ram=" + ram + "\n" +
-                "memory=" + memory + "\n" +
-                "frontCamera=" + frontCamera + "\n" +
-                "mainCamera=" + mainCamera + "\n" +
-                "batteryCapacity=" + batteryCapacity + "\n";
+        return super.toString() + "OS: " + os +  "\n" +
+                "RAM: " + ram + "GB" + "\n" +
+                "Memory: " + memory + "GB" + "\n" +
+                "Front camera: " + frontCamera + "MP" + "\n" +
+                "Main camera: " + mainCamera + "MP" + "\n" +
+                "Battery capacity: " + batteryCapacity +"mAh" + "\n";
     }
 }
 

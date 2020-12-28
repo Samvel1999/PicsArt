@@ -1,5 +1,7 @@
 package homework_4.abstractClasses;
 
+import java.time.Year;
+
 public abstract class Device {
 
     private Integer id;
@@ -13,7 +15,12 @@ public abstract class Device {
     }
 
     public void setId(Integer id) {
-        this.id = id;
+        if(id >= 0) {
+            this.id = id;
+        }
+        else {
+            System.out.println("Wrong data");
+        }
     }
 
     public String getModel() {
@@ -50,15 +57,19 @@ public abstract class Device {
     }
 
     public void setAnnouncementYear(Integer announcementYear) {
-        this.announcementYear = announcementYear;
+        if(announcementYear > 2010 && announcementYear <= Year.now().getValue()) {
+            this.announcementYear = announcementYear;
+        }
+        else {
+            System.out.println("Wrong data");
+        }
     }
 
     @Override
     public String toString() {
-        return  "model=" + model + "\n" +
-                "color=" + color + "\n" +
-                "announcementYear=" + announcementYear + "\n" +
-                "price=" + price + "\n";
-
+        return  "Model: " + model + "\n" +
+                "Color: " + color + "\n" +
+                "AnnouncementYear: " + announcementYear + "\n" +
+                "Price: " + price + "AMD" + "\n";
     }
 }

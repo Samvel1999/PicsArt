@@ -24,7 +24,9 @@ public class Printer extends DeviceWithoutScreen {
 
     @Override
     public String toString() {
-        return super.toString() + "max number of lists=" + maxNumberOfLists +  "\n" +
-                "is colored=" + isColored + "\n";
+        String colored = isColored ? "Yes" : "No";
+
+        return super.toString() + "Max number of lists: " + maxNumberOfLists + "pieces" +  "\n" +
+                "Colored: " + isColored + "\n";
     }
 }

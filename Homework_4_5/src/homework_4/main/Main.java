@@ -1,7 +1,11 @@
 package homework_4.main;
 
+import homework_4.interfaces.DeviceService;
+import homework_4.menu.Menu;
 import homework_4.model.Camera;
 import homework_4.service.CameraService;
+
+import java.time.Year;
 
 public class Main {
     public static void main(String[] args) {
@@ -187,8 +191,8 @@ public class Main {
         washingMachineService.print(washingMachineService.getByManufacturerCountry("China"));
         System.out.println("---------------------------------------");*/
 
-        /*Menu menu = new Menu();
-        menu.startMenu();*/
+        Menu menu = new Menu();
+        menu.startMenu();
 
         /*User user = new User();
         user.setFullName("Armen Hovsepyan");
@@ -196,11 +200,12 @@ public class Main {
         user.setEmail("armenHovsepyan@gmail.com");
         user.setPassword("Armen123Hov");*/
 
-        CRUDRepository<Camera> cameraCRUDRepository = new CameraService();
+        /*DeviceService<Camera> cameraCRUDRepository = new CameraService();
         CameraService cameraService = new CameraService();
         //Camera camera = cameraService.create();
         //cameraCRUDRepository.update(1, camera);
         cameraCRUDRepository.delete(1);
-        cameraService.save();
+        cameraService.save();*/
+
     }
 }

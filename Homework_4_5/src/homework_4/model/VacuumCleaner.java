@@ -26,7 +26,7 @@ public class VacuumCleaner extends DeviceWithoutScreen {
 
     @Override
     public String toString() {
-        return super.toString() + "weight = " + weight + "\n"
-                + "filter = " + filter + "\n";
+        return super.toString() + "Weight: " + weight + "KG" + "\n"
+                + "Filter: " + filter + "\n";
     }
 }

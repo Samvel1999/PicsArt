@@ -57,10 +57,10 @@ public class WashingMachine extends DeviceWithoutScreen {
 
     @Override
     public String toString() {
-        return super.toString() + "washing capacity = " + washingCapacity + "\n"
-                + "spin speed = " + spinSpeed + "\n"
-                + "number of programs = " + numberOfPrograms + "\n"
-                + "energy class = " + energyClass + "\n"
-                + "manufacturer country = " + manufacturerCountry + "\n";
+        return super.toString() + "Washing capacity: " + washingCapacity + "KG" + "\n"
+                + "Spin speed: " + spinSpeed + "rpm" + "\n"
+                + "Number of programs: " + numberOfPrograms + "\n"
+                + "Energy class: " + energyClass + "\n"
+                + "Manufacturer country: " + manufacturerCountry + "\n";
     }
 }
