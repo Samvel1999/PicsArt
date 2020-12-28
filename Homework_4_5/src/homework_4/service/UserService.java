@@ -80,7 +80,7 @@ public class UserService {
     }
 
     /**After registration I call login().*/
-    public void registration(Language language) throws FullNameException {
+    public void registration(Language language) {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(path, true));
             String data;

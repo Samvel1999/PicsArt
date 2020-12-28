@@ -90,11 +90,11 @@ public class MobileService extends AbstractDeviceService<Mobile> {
                 mobile.setFrontCamera(Integer.parseInt(data[6]));
                 mobile.setMainCamera(Integer.parseInt(data[7]));
                 mobile.setBatteryCapacity(Integer.parseInt(data[8]));
-                mobile.setAnnouncementYear(Integer.parseInt(data[9]));
                 Screen screen = new Screen();
-                screen.setWidth(Integer.parseInt(data[10]));
-                screen.setHeight(Integer.parseInt(data[11]));
+                screen.setWidth(Integer.parseInt(data[9]));
+                screen.setHeight(Integer.parseInt(data[10]));
                 mobile.setScreen(screen);
+                mobile.setAnnouncementYear(Integer.parseInt(data[11]));
                 mobile.setPrice(Integer.parseInt(data[12]));
 
                 mobiles.add(mobile);
@@ -131,12 +131,13 @@ public class MobileService extends AbstractDeviceService<Mobile> {
                     mobile.setFrontCamera(Integer.parseInt(data[6]));
                     mobile.setMainCamera(Integer.parseInt(data[7]));
                     mobile.setBatteryCapacity(Integer.parseInt(data[8]));
-                    mobile.setAnnouncementYear(Integer.parseInt(data[9]));
                     Screen screen = new Screen();
-                    screen.setWidth(Integer.parseInt(data[10]));
-                    screen.setHeight(Integer.parseInt(data[11]));
+                    screen.setWidth(Integer.parseInt(data[9]));
+                    screen.setHeight(Integer.parseInt(data[10]));
                     mobile.setScreen(screen);
+                    mobile.setAnnouncementYear(Integer.parseInt(data[11]));
                     mobile.setPrice(Integer.parseInt(data[12]));
+
 
                     break;
                 }
@@ -176,12 +177,13 @@ public class MobileService extends AbstractDeviceService<Mobile> {
                     mobile.setFrontCamera(Integer.parseInt(data[6]));
                     mobile.setMainCamera(Integer.parseInt(data[7]));
                     mobile.setBatteryCapacity(Integer.parseInt(data[8]));
-                    mobile.setAnnouncementYear(Integer.parseInt(data[9]));
                     Screen screen = new Screen();
-                    screen.setWidth(Integer.parseInt(data[10]));
-                    screen.setHeight(Integer.parseInt(data[11]));
+                    screen.setWidth(Integer.parseInt(data[9]));
+                    screen.setHeight(Integer.parseInt(data[10]));
                     mobile.setScreen(screen);
+                    mobile.setAnnouncementYear(Integer.parseInt(data[11]));
                     mobile.setPrice(Integer.parseInt(data[12]));
+
 
                     mobiles.add(mobile);
                 }
@@ -222,11 +224,11 @@ public class MobileService extends AbstractDeviceService<Mobile> {
                     mobile.setFrontCamera(Integer.parseInt(data[6]));
                     mobile.setMainCamera(Integer.parseInt(data[7]));
                     mobile.setBatteryCapacity(Integer.parseInt(data[8]));
-                    mobile.setAnnouncementYear(Integer.parseInt(data[9]));
                     Screen screen = new Screen();
-                    screen.setWidth(Integer.parseInt(data[10]));
-                    screen.setHeight(Integer.parseInt(data[11]));
+                    screen.setWidth(Integer.parseInt(data[9]));
+                    screen.setHeight(Integer.parseInt(data[10]));
                     mobile.setScreen(screen);
+                    mobile.setAnnouncementYear(Integer.parseInt(data[11]));
                     mobile.setPrice(Integer.parseInt(data[12]));
 
                     mobiles.add(mobile);
@@ -267,12 +269,13 @@ public class MobileService extends AbstractDeviceService<Mobile> {
                     mobile.setFrontCamera(Integer.parseInt(data[6]));
                     mobile.setMainCamera(Integer.parseInt(data[7]));
                     mobile.setBatteryCapacity(Integer.parseInt(data[8]));
-                    mobile.setAnnouncementYear(Integer.parseInt(data[9]));
                     Screen screen = new Screen();
-                    screen.setWidth(Integer.parseInt(data[10]));
-                    screen.setHeight(Integer.parseInt(data[11]));
+                    screen.setWidth(Integer.parseInt(data[9]));
+                    screen.setHeight(Integer.parseInt(data[10]));
                     mobile.setScreen(screen);
+                    mobile.setAnnouncementYear(Integer.parseInt(data[11]));
                     mobile.setPrice(Integer.parseInt(data[12]));
+
 
                     mobiles.add(mobile);
                 }
@@ -312,11 +315,11 @@ public class MobileService extends AbstractDeviceService<Mobile> {
                     mobile.setFrontCamera(Integer.parseInt(data[6]));
                     mobile.setMainCamera(Integer.parseInt(data[7]));
                     mobile.setBatteryCapacity(Integer.parseInt(data[8]));
-                    mobile.setAnnouncementYear(Integer.parseInt(data[9]));
                     Screen screen = new Screen();
-                    screen.setWidth(Integer.parseInt(data[10]));
-                    screen.setHeight(Integer.parseInt(data[11]));
+                    screen.setWidth(Integer.parseInt(data[9]));
+                    screen.setHeight(Integer.parseInt(data[10]));
                     mobile.setScreen(screen);
+                    mobile.setAnnouncementYear(Integer.parseInt(data[11]));
                     mobile.setPrice(Integer.parseInt(data[12]));
 
                     mobiles.add(mobile);
@@ -356,11 +359,11 @@ public class MobileService extends AbstractDeviceService<Mobile> {
                     mobile.setFrontCamera(Integer.parseInt(data[6]));
                     mobile.setMainCamera(Integer.parseInt(data[7]));
                     mobile.setBatteryCapacity(Integer.parseInt(data[8]));
-                    mobile.setAnnouncementYear(Integer.parseInt(data[9]));
                     Screen screen = new Screen();
-                    screen.setWidth(Integer.parseInt(data[10]));
-                    screen.setHeight(Integer.parseInt(data[11]));
+                    screen.setWidth(Integer.parseInt(data[9]));
+                    screen.setHeight(Integer.parseInt(data[10]));
                     mobile.setScreen(screen);
+                    mobile.setAnnouncementYear(Integer.parseInt(data[11]));
                     mobile.setPrice(Integer.parseInt(data[12]));
 
                     mobiles.add(mobile);
