@@ -27,6 +27,6 @@ public class Printer extends DeviceWithoutScreen {
         String colored = isColored ? "Yes" : "No";
 
         return super.toString() + "Max number of lists: " + maxNumberOfLists + "pieces" +  "\n" +
-                "Colored: " + isColored + "\n";
+                "Colored: " + colored + "\n";
     }
 }

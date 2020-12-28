@@ -1,6 +1,10 @@
 package homework_4.service;
 
 import homework_4.enums.Language;
+import homework_4.exceptions.EmailException;
+import homework_4.exceptions.FullNameException;
+import homework_4.exceptions.PasswordException;
+import homework_4.exceptions.UsernameException;
 import homework_4.model.*;
 import homework_4.otherClasses.Dictionary;
 import homework_4.otherClasses.MD5Encoder;
@@ -31,7 +35,7 @@ public class UserService {
         }
         catch (IOException e) {
             System.out.println("File is not found.");
-            return null;
+            return new HashSet<>();
         }
     }
 
@@ -40,22 +44,43 @@ public class UserService {
         User user = new User();
         Map<Language, HashMap<String, String>> myDictionary = Dictionary.translate();
 
-        System.out.println(myDictionary.get(language).get("FullName: "));
-        user.setFullName(scanner.nextLine());
+        try {
+            System.out.println(myDictionary.get(language).get("FullName: "));
 
-        System.out.println(myDictionary.get(language).get("Username: "));
-        user.setUsername(scanner.nextLine());
+            user.setFullName(scanner.nextLine());
 
-        System.out.println(myDictionary.get(language).get("Email: "));
-        user.setEmail(scanner.nextLine());
+            System.out.println(myDictionary.get(language).get("Username: "));
+            user.setUsername(scanner.nextLine());
 
-        System.out.println(myDictionary.get(language).get("Password: "));
-        user.setPassword(scanner.nextLine());
+            System.out.println(myDictionary.get(language).get("Email: "));
+            user.setEmail(scanner.nextLine());
+
+            System.out.println(myDictionary.get(language).get("Password: "));
+            user.setPassword(scanner.nextLine());
+        } catch (FullNameException e) {
+            System.out.println("Invalid full name");
+            create(language);
+
+        } catch (UsernameException e) {
+
+            System.out.println("Invalid username");
+            create(language);
+
+        } catch (EmailException e) {
+
+            System.out.println("Invalid email format");
+            create(language);
+
+        } catch (PasswordException e) {
+            System.out.println("Invalid password");
+            create(language);
+        }
 
         return user;
     }
 
-    public void registration(Language language) {
+    /**After registration I call login().*/
+    public void registration(Language language) throws FullNameException {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(path, true));
             String data;
@@ -66,7 +91,6 @@ public class UserService {
 
                 data = id + "," + user.getFullName() + "," + user.getUsername() + "," + user.getEmail() + ","
                         + hashedPassword;
-                id++;
             }
             else {
                 BufferedReader reader = new BufferedReader(new FileReader(path));
@@ -79,8 +103,8 @@ public class UserService {
 
                 data = "\n" + id + "," + user.getFullName() + "," + user.getUsername()
                         + "," + user.getEmail() + "," + hashedPassword;
-                id++;
             }
+            id++;
             writer.write(data);
 
             writer.close();
@@ -94,6 +118,7 @@ public class UserService {
         }
     }
 
+    /**After wrong login I call it again.*/
     public void login(Language language) {
         Map<Language, HashMap<String, String>> myDictionary = Dictionary.translate();
 
@@ -118,7 +143,7 @@ public class UserService {
                 }
             }
 
-            System.out.println("Invalid input data. Try again.");
+            System.out.println(myDictionary.get(language).get("Invalid input data.Try again."));
             login(language);
 
 

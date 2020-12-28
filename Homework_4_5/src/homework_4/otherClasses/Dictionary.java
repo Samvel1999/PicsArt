@@ -1,5 +1,11 @@
 package homework_4.otherClasses;
 
+/**
+  Dictionary takes all information from EngArmRusDictionary.txt.
+  There is sentences in 3 languages in file.
+  Language enum contains: English, Armenian, Russian
+ */
+
 import homework_4.enums.Language;
 
 import java.io.BufferedReader;
